@@ -47,3 +47,9 @@ Username: admin
 Password: _start_aY9@K_baG_end_
 
 <hr />
+
+### Custom nuget package (ApiVersioningLib)
+
+URL: https://www.nuget.org/packages/ApiVersioningLib/
+
+<hr />
