@@ -36,3 +36,14 @@ URL: http://localhost:9000
 
 URL: http://localhost:8001/swagger/index.html
 
+### Account Database
+
+Credentials:
+
+Database name: _accountdatabase_Wc1#713mb^JQQ+
+
+Username: admin
+
+Password: _start_aY9@K_baG_end_
+
+<hr />

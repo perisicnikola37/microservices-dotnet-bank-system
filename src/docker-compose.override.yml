@@ -2,31 +2,20 @@ version: '3.4'
 
 x-db-env: &db-env
   POSTGRES_USER: admin
-  POSTGRES_PASSWORD: _postgresql_po&LFXlqeyBA
+  POSTGRES_PASSWORD: _start_aY9@K_baG_end_
 
 services:
   account_database:
     container_name: account_database
     environment:
       <<: *db-env
-      POSTGRES_DB: account_database_UWb#+s1
+      POSTGRES_DB: _accountdatabase_Wc1#713mb^JQQ+
     restart: always
     ports:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-  
-  account.api:
-    container_name: account.api
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=account_database;Port=5432;Database=account_database_UWb#+s1;User Id=admin;Password=_start_Z7+4b+G2k+LZ%_end_;"
-    depends_on:
-      - account_database
-      - rabbitmq
-    ports:
-      - "8001:8080"
- 
+
   rabbitmq:
     container_name: rabbitmq
     restart: always
@@ -36,6 +25,17 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin@gmail.com
       RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
+
+  account.api:
+    container_name: account.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;Username=admin;Password=_start_aY9@K_baG_end_;"
+    depends_on:
+      - account_database
+      - rabbitmq
+    ports:
+      - "8001:8080"
 
   pgadmin:
     container_name: pgadmin
@@ -47,7 +47,7 @@ services:
       - "5050:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
-  
+
   portainer:
     container_name: portainer
     restart: always

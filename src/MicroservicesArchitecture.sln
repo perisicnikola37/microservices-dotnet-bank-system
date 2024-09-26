@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account.Domain", "Services\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account.Infrastructure", "Services\Account\Account.Infrastructure\Account.Infrastructure.csproj", "{2F5DF5EC-AF36-4930-ABB4-9D91AB379D0F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiVersioningLib", "NugetPackage\ApiVersioningLib\ApiVersioningLib.csproj", "{68B77DAA-1054-4244-92AD-03A112CDAC28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{2F5DF5EC-AF36-4930-ABB4-9D91AB379D0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F5DF5EC-AF36-4930-ABB4-9D91AB379D0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F5DF5EC-AF36-4930-ABB4-9D91AB379D0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
