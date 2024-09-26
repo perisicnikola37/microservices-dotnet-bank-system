@@ -1,20 +1,38 @@
 using Account.Infrastructure;
 using Account.Infrastructure.Persistence;
+using ApiVersioningLib;
 using HealthChecks.UI.Client;
 using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
+const string accountApiVersion = ApiVersioningExtensions.AccountApiVersion;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(s =>
 {
-    s.SwaggerDoc("v1", new OpenApiInfo { Title = "Account.API", Version = "v1" });
-    
-    // Exclude the root endpoint from Swagger documentation
-    s.DocInclusionPredicate((_, apiDesc) => apiDesc.RelativePath != "/");
+    // Define the API versioning
+    s.SwaggerDoc($"v{accountApiVersion}", new OpenApiInfo
+    {
+        Title = "Account service",
+        Version = $"v{accountApiVersion}", 
+        Description = "Service for managing customer accounts.",
+        Contact = new OpenApiContact
+        {
+            Name = "Nikola Perišić",
+            Email = "nikola.perisic@vegait.rs",
+            Url = new Uri("https://github.com/perisicnikola37")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "LinkedIn",
+            Url = new Uri("https://www.linkedin.com/in/perisicnikola37")
+        }
+    });
 });
 
 builder.Services.AddHealthChecks()
@@ -65,7 +83,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Account.API v1"));
+    app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/v{accountApiVersion}/swagger.json", $"Account.API v{accountApiVersion}"));
 }
 
 // app.UseHttpsRedirection();
@@ -75,7 +93,16 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.MapGet("/", () => Results.Redirect("/swagger/index.html"));
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger/index.html");
+        return;
+    }
+
+    await next();
+});
 
 app.MapHealthChecks("/health-check", new HealthCheckOptions
 {
