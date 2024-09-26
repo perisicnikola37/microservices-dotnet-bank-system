@@ -1,0 +1,92 @@
+# Build Folders
+bin/
+obj/
+out/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VS Code settings
+.vscode/
+
+# Rider settings
+.idea/
+.idea_modules/
+
+# Visual Studio cache files
+.vs/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+*.log
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+
+# Resharper
+_ReSharper*/
+*.[rR]e[Ss]harper
+resharper*.xml
+
+# DotCover
+*.dotCover
+
+# StyleCop
+StyleCopReport.xml
+StyleCopCache.cache
+
+# Backup & report files from converting an old project file to a newer
+# Visual Studio version. Backup files are not needed, because we have git ;-)
+*.gpState
+*.sln.ide
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# User-specific files (MonoDevelop/Xamarin Studio)
+*.userprefs
+
+# Auto-generated UI files
+*.designer.cs
+*.g.cs
+*.g.i.cs
+*.g.vb
+*.g.i.vb
+*.csscomb.json
+
+# Packages
+*.nupkg
+*.nuspec
+
+# Rider's File Storage
+.idea/
+
+# Web config
+appsettings.json
+appsettings.Development.json
