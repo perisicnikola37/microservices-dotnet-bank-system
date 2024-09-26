@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+  accountdb:
+    image: postgres
+    networks:
+      - microservices-dotnet
+  
+  account.api:
+    image: ${DOCKER_REGISTRY-}accountapi
+    build:
+      context: .
+      dockerfile: Services/Account/Account.API/Dockerfile
+    networks:
+      - microservices-dotnet
+  
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    networks:
+      - microservices-dotnet
+
+  pgadmin:
+    image: dpage/pgadmin4
+    networks:
+      - microservices-dotnet
+  
+  portainer:
+    image: portainer/portainer-ce
+    networks:
+      - microservices-dotnet
+
+volumes:
+  portainer_data:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  microservices-dotnet:

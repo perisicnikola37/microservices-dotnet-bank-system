@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account", "Services\Account\Account.API\Account.csproj", "{BAA18C5B-9DA8-49FD-92EA-7EA109DF92AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account", "Services\Account\Account.API\Account.API.csproj", "{BAA18C5B-9DA8-49FD-92EA-7EA109DF92AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

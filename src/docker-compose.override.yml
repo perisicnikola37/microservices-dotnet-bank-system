@@ -1,0 +1,56 @@
+version: '3.4'
+
+x-db-env: &db-env
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: password
+
+services:
+  accountdb:
+    container_name: accountdb
+    environment:
+      <<: *db-env
+      POSTGRES_DB: AccountDb
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  
+  account.api:
+    container_name: account.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=accountdb;Port=5432;Database=AccountDb;User Id=admin;Password=password;"
+    depends_on:
+      - accountdb
+      - rabbitmq
+    ports:
+      - "8001:8080"
+ 
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=password
+    restart: always
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+  
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
