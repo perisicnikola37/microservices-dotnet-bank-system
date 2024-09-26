@@ -4,6 +4,18 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <PackageId>ApiVersioningLib</PackageId>
+    <Authors>Nikola Perišić</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>A library that provides API versioning for services.</Description>
+    <PackageTags>api versioning</PackageTags>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="images\icon.png" Pack="true" PackagePath=""/>
+    <None Include="README.md" Pack="true" PackagePath=""/>
+  </ItemGroup>
+  
 </Project>
