@@ -15,7 +15,11 @@ You can install the **ApiVersioningLib** library via the NuGet Package Manager. 
 Install-Package ApiVersioningLib
 ```
 
-Alternatively, you can add it through the NuGet Package Manager UI in Visual Studio.
+or
+
+```bash
+dotnet add package ApiVersioningLib --version 1.0.0
+```
 
 ## Usage
 
