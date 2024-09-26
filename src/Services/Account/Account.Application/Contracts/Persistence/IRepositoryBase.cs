@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using Account.Domain.Common;
 
-namespace Account.Application.Contracts;
+namespace Account.Application.Contracts.Persistence;
 
 public interface IRepositoryBase<T> where T : EntityBase
     {

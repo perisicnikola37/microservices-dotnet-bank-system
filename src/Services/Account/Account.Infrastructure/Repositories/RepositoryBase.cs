@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using Account.Application.Contracts;
+using Account.Application.Contracts.Persistence;
 using Account.Domain.Common;
 using Account.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;

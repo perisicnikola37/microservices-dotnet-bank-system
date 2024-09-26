@@ -1,4 +1,4 @@
-using Account.Application.Contracts;
+using Account.Application.Contracts.Persistence;
 using Account.Infrastructure.Persistence;
 
 namespace Account.Infrastructure.Repositories;

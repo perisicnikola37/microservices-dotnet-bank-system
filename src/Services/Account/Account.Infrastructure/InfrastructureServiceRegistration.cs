@@ -1,4 +1,4 @@
-using Account.Application.Contracts;
+using Account.Application.Contracts.Persistence;
 using Account.Infrastructure.Persistence;
 using Account.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;

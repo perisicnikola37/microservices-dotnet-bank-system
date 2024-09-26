@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Account.Domain\Account.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Accounts\Queries\" />
+  </ItemGroup>
+
 </Project>
