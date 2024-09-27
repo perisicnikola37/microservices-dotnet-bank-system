@@ -11,7 +11,7 @@
     <PackageTags>api versioning</PackageTags>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.0.1</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
