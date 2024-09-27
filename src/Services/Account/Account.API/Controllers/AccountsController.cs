@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Account.API.Controllers;
 
-[Route("api/v1/[controller]")]
+[Route("api/[controller]")]
 [ApiController]
 public class AccountsController(IMediator mediator, IPublishEndpoint publishEndpoint) : ControllerBase
     {

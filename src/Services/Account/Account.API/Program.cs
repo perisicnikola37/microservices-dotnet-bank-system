@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-const string accountApiVersion = ApiVersioningExtensions.AccountApiVersion;
+var globalStore = ApiVersioning.Instance;
+globalStore.AddService("AccountService", "1.0"); 
+var accountApiVersion = globalStore.GetServiceVersion("AccountService");
 
 var builder = WebApplication.CreateBuilder(args);
 
