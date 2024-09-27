@@ -1,5 +1,6 @@
-using Account.Application.Features.Accounts.Commands.Adding;
 using Account.Application.Features.Accounts.Commands.CreateAccount;
+using Account.Application.Features.Accounts.Commands.Updating;
+using EventBus.Messages.Events;
 using MassTransit;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -17,22 +18,29 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
     [ProducesDefaultResponseType]
     public async Task<ActionResult> Create([FromBody] CreateAccountCommand command)
     {
-        var result = await mediator.Send(command);
-            
-        return Ok(result);
+        return Ok(await mediator.Send(command));
     }
 
-    [HttpPost("Adding")]
+    [HttpPut]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Adding([FromBody] AddingCommand command)
+    public async Task<ActionResult> Update([FromBody] UpdateAccountCommand command)
     {
         await mediator.Send(command);
-           
+        
+        await publishEndpoint.Publish(
+            new AccountTransactionEvent()
+            {
+                CustomerId = command.CustomerId,
+                AccountId = command.AccountId,
+                Amount = command.Amount,
+                Type = TransactionType.Adding
+            });
+        
         return Ok();
     }
     }

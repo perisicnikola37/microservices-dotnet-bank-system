@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Account.Infrastructure", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiVersioningLib", "NugetPackage\ApiVersioningLib\ApiVersioningLib.csproj", "{68B77DAA-1054-4244-92AD-03A112CDAC28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Messages", "BuildingBlocks\EventBus.Messages\EventBus.Messages.csproj", "{015BBFDD-D069-41C1-8F67-9AEE19E6DEC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68B77DAA-1054-4244-92AD-03A112CDAC28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{015BBFDD-D069-41C1-8F67-9AEE19E6DEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{015BBFDD-D069-41C1-8F67-9AEE19E6DEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{015BBFDD-D069-41C1-8F67-9AEE19E6DEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{015BBFDD-D069-41C1-8F67-9AEE19E6DEC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -40,6 +40,8 @@ URL: http://localhost:8001/swagger/index.html
 
 Credentials:
 
+Host name: account_database
+
 Database name: _accountdatabase_Wc1#713mb^JQQ+
 
 Username: admin

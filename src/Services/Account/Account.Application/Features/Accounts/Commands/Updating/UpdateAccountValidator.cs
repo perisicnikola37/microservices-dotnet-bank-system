@@ -1,11 +1,11 @@
 using Account.Application.Contracts.Messages;
 using FluentValidation;
 
-namespace Account.Application.Features.Accounts.Commands.Adding;
+namespace Account.Application.Features.Accounts.Commands.Updating;
 
-public class AddingValidator : AbstractValidator<AddingCommand>
+public class UpdateAccountValidator : AbstractValidator<UpdateAccountCommand>
     {
-    public AddingValidator()
+    public UpdateAccountValidator()
     {
         RuleFor(x => x.CustomerId)
             .NotEqual(Guid.Empty).WithMessage(AccountMessages.CustomerRequired);

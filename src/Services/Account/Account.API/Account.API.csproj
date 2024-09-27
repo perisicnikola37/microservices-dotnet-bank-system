@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\EventBus.Messages\EventBus.Messages.csproj" />
     <ProjectReference Include="..\Account.Application\Account.Application.csproj" />
     <ProjectReference Include="..\Account.Infrastructure\Account.Infrastructure.csproj" />
   </ItemGroup>

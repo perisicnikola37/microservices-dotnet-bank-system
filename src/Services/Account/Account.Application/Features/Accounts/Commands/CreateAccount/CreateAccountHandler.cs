@@ -9,11 +9,9 @@ public class CreateAccountHandler(
     IMapper mapper)
     : IRequestHandler<CreateAccountCommand, Guid>
     {
-    private readonly IMapper _mapper = mapper;
-
     public async Task<Guid> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
-        var accountEntity = _mapper.Map<Domain.Entities.Account>(request);
+        var accountEntity = mapper.Map<Domain.Entities.Account>(request);
         var newAccount = await accountRepository.AddAsync(accountEntity!);
         
         return newAccount.Id;
