@@ -1,44 +1,117 @@
+using Account.Application;
+using Account.Infrastructure;
+using Account.Infrastructure.Persistence;
+using ApiVersioningLib;
+using HealthChecks.UI.Client;
+using MassTransit;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+
+const string accountApiVersion = ApiVersioningExtensions.AccountApiVersion;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+builder.Services.AddSwaggerGen(s =>
+{
+    // Define the API versioning
+    s.SwaggerDoc($"v{accountApiVersion}", new OpenApiInfo
+    {
+        Title = "Account service",
+        Version = $"v{accountApiVersion}", 
+        Description = "Service for managing customer accounts.",
+        Contact = new OpenApiContact
+        {
+            Name = "Nikola Perišić",
+            Email = "nikola.perisic@vegait.rs",
+            Url = new Uri("https://github.com/perisicnikola37")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "LinkedIn",
+            Url = new Uri("https://www.linkedin.com/in/perisicnikola37")
+        }
+    });
+});
+
+builder.Services.AddHealthChecks()
+    .AddRabbitMQ(builder.Configuration["EventBusSettings:HostAddress"]!, name: "account_transaction-rabbitmq_bus")
+    .AddDbContextCheck<AccountDatabaseContext>();
+
+builder.Services.AddMassTransit(conf =>
+{
+    conf.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]!);
+    });
+});
+
+builder.Services.Configure<MassTransitHostOptions>(conf =>
+{
+    conf.WaitUntilStarted = true;
+    conf.StartTimeout = TimeSpan.FromSeconds(30);
+    conf.StopTimeout = TimeSpan.FromMinutes(1);
+});
+
+builder.Services.AddControllers();
+
+InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<AccountDatabaseContext>();
+    var logger = services.GetRequiredService<ILogger<AccountDatabaseContextSeed>>();
+
+    try
+    {
+        await context.Database.MigrateAsync();
+        
+        // Seed the "Account API" database
+        await AccountDatabaseContextSeed.SeedAsync(context, logger);
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, $"An error occurred while migrating or seeding the \"Account.API\" database.");
+    }
 }
 
-app.UseHttpsRedirection();
-
-var summaries = new[]
+if (app.Environment.IsDevelopment())
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/v{accountApiVersion}/swagger.json", $"Account.API v{accountApiVersion}"));
+}
 
-app.MapGet("/weatherforecast", () =>
+// app.UseHttpsRedirection();
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Use(async (context, next) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger/index.html");
+        return;
+    }
+
+    await next();
+});
+
+app.MapHealthChecks("/health-check", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

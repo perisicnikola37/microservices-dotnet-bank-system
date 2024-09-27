@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  accountdb:
+  account_database:
     image: postgres
     networks:
       - microservices-dotnet
