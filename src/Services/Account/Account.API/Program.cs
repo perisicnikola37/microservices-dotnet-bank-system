@@ -1,3 +1,4 @@
+using Account.Application;
 using Account.Infrastructure;
 using Account.Infrastructure.Persistence;
 using ApiVersioningLib;
@@ -57,6 +58,8 @@ builder.Services.Configure<MassTransitHostOptions>(conf =>
 builder.Services.AddControllers();
 
 InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
+builder.Services.AddApplicationServices();
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
