@@ -34,7 +34,7 @@ URL: http://localhost:8081
 
 Credentials:
 
-Username: admin@gmail.com
+Username: admin
 
 Password: _transactiondatabase_9G2sTQ*HM5
 
@@ -87,3 +87,8 @@ Password: _transactiondatabase_9G2sTQ*HM5
 URL: https://www.nuget.org/packages/ApiVersioningLib
 
 <hr />
+
+## Health checks
+
+Account service: http://localhost:8001/health-check
+
