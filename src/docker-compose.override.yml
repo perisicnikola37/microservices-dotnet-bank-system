@@ -69,9 +69,8 @@ services:
   mongo-express:
     image: mongo-express
     environment:
-      - ME_CONFIG_MONGODB_SERVER=transaction_database
-      - ME_CONFIG_MONGODB_PORT=27017
-      - ME_CONFIG_BASICAUTH_USERNAME=admin@gmail.com
+      - ME_CONFIG_MONGODB_URL=mongodb://transaction_database:27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
       - ME_CONFIG_BASICAUTH_PASSWORD=_transactiondatabase_9G2sTQ*HM5
     restart: always
     ports:
