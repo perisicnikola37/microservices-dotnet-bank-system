@@ -2,7 +2,7 @@ version: '3.4'
 
 x-db-env: &db-env
   POSTGRES_USER: admin
-  POSTGRES_PASSWORD: _start_aY9@K_baG_end_
+  POSTGRES_PASSWORD: _accountdatabase_RjmORhePFbuypx
 
 services:
   account_database:
@@ -15,6 +15,14 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+        
+  transaction_database:
+    container_name: transaction_database
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   rabbitmq:
     container_name: rabbitmq
@@ -30,12 +38,22 @@ services:
     container_name: account.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;User Id=admin;Password=_start_aY9@K_baG_end_;"
+      - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;User Id=admin;Password=_accountdatabase_RjmORhePFbuypx;"
     depends_on:
       - account_database
       - rabbitmq
     ports:
       - "8001:8080"
+        
+  transaction.api:
+    container_name: transaction.api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - transaction_database
+      - rabbitmq
+    ports:
+      - "8003:8080"
 
   pgadmin:
     container_name: pgadmin
@@ -47,6 +65,19 @@ services:
       - "5050:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
+  
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=transaction_database
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin@gmail.com
+      - ME_CONFIG_BASICAUTH_PASSWORD=_transactiondatabase_9G2sTQ*HM5
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - mongo_data:/data/db
 
   portainer:
     container_name: portainer

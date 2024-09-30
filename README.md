@@ -1,4 +1,4 @@
-### Applications
+## Message broker
 
 <hr />
 
@@ -14,6 +14,8 @@ Password: _rabbitmq_3gVE_0c!BbUby+
 
 <hr />
 
+## Database and container management tools
+
 ### pgAdmin
 
 URL: http://localhost:5050 
@@ -26,17 +28,31 @@ Password: _pgadmin_v-r6yVMv5G30V#2
 
 <hr />
 
+### mongo-express
+
+URL: http://localhost:8081
+
+Credentials:
+
+Username: admin@gmail.com
+
+Password: _transactiondatabase_9G2sTQ*HM5
+
+<hr />
+
 ### Portainer
 
 URL: http://localhost:9000 
 
 <hr />
 
+## Services
+
 ### Account API
 
 URL: http://localhost:8001/swagger/index.html
 
-### Account Database
+### Account Database (PostgreSQL)
 
 Credentials:
 
@@ -46,12 +62,28 @@ Database name: _accountdatabase_Wc1#713mb^JQQ+
 
 Username: admin
 
-Password: _start_aY9@K_baG_end_
+Password: _accountdatabase_RjmORhePFbuypx
 
 <hr />
 
-### Custom nuget package (ApiVersioningLib)
+### Transaction API
 
-URL: https://www.nuget.org/packages/ApiVersioningLib/
+URL: http://localhost:8003/swagger/index.html 
+
+### Transaction Database (MongoDB)
+
+Credentials:
+
+Username: admin@gmail.com
+
+Password: _transactiondatabase_9G2sTQ*HM5
+
+<hr />
+
+## Custom nuget package
+
+### ApiVersioningLib
+
+URL: https://www.nuget.org/packages/ApiVersioningLib
 
 <hr />

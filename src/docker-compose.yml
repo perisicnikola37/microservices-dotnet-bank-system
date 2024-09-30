@@ -5,6 +5,11 @@ services:
     image: postgres
     networks:
       - microservices-dotnet
+      
+  transaction_database:
+    image: mongo
+    networks:
+      - microservices-dotnet
   
   account.api:
     image: ${DOCKER_REGISTRY-}accountapi
@@ -18,9 +23,22 @@ services:
     image: rabbitmq:3-management-alpine
     networks:
       - microservices-dotnet
+  
+  transaction.api:
+    image: ${DOCKER_REGISTRY-}transactionapi
+    build:
+      context: .
+      dockerfile: Services/Transaction/Transaction.API/Dockerfile
+    networks:
+      - microservices-dotnet
 
   pgadmin:
     image: dpage/pgadmin4
+    networks:
+      - microservices-dotnet
+      
+  mongo-express:
+    image: mongo-express
     networks:
       - microservices-dotnet
   
@@ -30,6 +48,7 @@ services:
       - microservices-dotnet
 
 volumes:
+  mongo_data:
   portainer_data:
   postgres_data:
   pgadmin_data:

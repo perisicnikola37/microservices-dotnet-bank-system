@@ -39,7 +39,7 @@ builder.Services.AddSwaggerGen(s =>
 });
 
 builder.Services.AddHealthChecks()
-    .AddRabbitMQ(builder.Configuration["EventBusSettings:HostAddress"]!, name: "account_transaction-rabbitmq_bus")
+    .AddRabbitMQ(builder.Configuration["EventBusSettings:HostAddress"]!, name: "account-transaction-rabbitmq_bus")
     .AddDbContextCheck<AccountDatabaseContext>();
 
 builder.Services.AddMassTransit(conf =>
