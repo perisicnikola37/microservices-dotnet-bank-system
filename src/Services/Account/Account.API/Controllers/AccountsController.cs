@@ -1,5 +1,6 @@
 using Account.Application.Features.Accounts.Commands.CreateAccount;
 using Account.Application.Features.Accounts.Commands.Updating;
+using Account.Application.Features.Accounts.Queries.GetAccount;
 using EventBus.Messages.Events;
 using MassTransit;
 using MediatR;
@@ -42,5 +43,17 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
             });
         
         return Ok();
+    }
+    
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(GetAccountResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult> GetById([FromRoute] Guid id)
+    {
+        return Ok(await mediator.Send(new AccountQueryRequest { AccountId = id }));
     }
     }
