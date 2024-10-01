@@ -1,6 +1,6 @@
 namespace Account.Application.Features.Accounts.Queries.GetAccount;
 
-public class GetAccountResponse
+public record GetAccountResponse
     {
     public Guid AccountId { get; set; }
     public Guid CustomerId { get; set; }
