@@ -1,3 +1,7 @@
+## [Installation guide](https://github.com/perisicnikola37/microservices-dotnet-bank-system/wiki/Installation-guide)
+
+<hr/>
+
 ## Message broker
 
 <hr />
