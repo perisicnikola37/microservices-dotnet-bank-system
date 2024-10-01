@@ -4,8 +4,6 @@
 
 ## Message broker
 
-<hr />
-
 ### RabbitMQ
 
 URL: http://localhost:15672 
