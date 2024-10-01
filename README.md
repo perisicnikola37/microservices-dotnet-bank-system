@@ -42,7 +42,7 @@ Password: _transactiondatabase_9G2sTQ*HM5
 
 ### Portainer
 
-URL: http://localhost:9000 
+URL: http://localhost:9090 
 
 <hr />
 
@@ -92,3 +92,14 @@ URL: https://www.nuget.org/packages/ApiVersioningLib
 
 Account service: http://localhost:8001/health-check
 
+<hr />
+
+## Installation
+
+```bash
+docker swarm init
+```
+
+```bash
+docker stack deploy -c docker-compose.yml my-cluster
+```
