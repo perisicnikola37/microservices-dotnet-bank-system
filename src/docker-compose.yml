@@ -1,49 +1,118 @@
-version: '3.4'
+x-db-env: &db-env
+  POSTGRES_USER: admin
+  POSTGRES_PASSWORD: _accountdatabase_RjmORhePFbuypx
 
 services:
   account_database:
     image: postgres
-    networks:
-      - microservices-dotnet
-      
-  transaction_database:
-    image: mongo
+    environment:
+      <<: *db-env
+      POSTGRES_DB: _accountdatabase_Wc1#713mb^JQQ+
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    deploy:
+      replicas: 1
     networks:
       - microservices-dotnet
   
-  account.api:
-    image: ${DOCKER_REGISTRY-}accountapi
+  transaction_database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    deploy:
+      replicas: 1
+    networks:
+      - microservices-dotnet
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin@gmail.com
+      RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
+    deploy:
+      replicas: 1
+    networks:
+      - microservices-dotnet
+
+  account_api:
+    image: src-account_api
     build:
       context: .
       dockerfile: Services/Account/Account.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;User Id=admin;Password=_accountdatabase_RjmORhePFbuypx;"
+    depends_on:
+      - account_database
+      - rabbitmq
+    ports:
+      - "8001:8080"
+    deploy:
+      replicas: 3
     networks:
       - microservices-dotnet
   
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    networks:
-      - microservices-dotnet
-  
-  transaction.api:
-    image: ${DOCKER_REGISTRY-}transactionapi
+  transaction_api:
+    image: src-transaction_api
     build:
       context: .
       dockerfile: Services/Transaction/Transaction.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - transaction_database
+      - rabbitmq
+    ports:
+      - "8003:8080"
+    deploy:
+      replicas: 3
     networks:
       - microservices-dotnet
 
   pgadmin:
     image: dpage/pgadmin4
-    networks:
-      - microservices-dotnet
-      
-  mongo-express:
-    image: mongo-express
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: _pgadmin_v-r6yVMv5G30V#2
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+    deploy:
+      replicas: 1
     networks:
       - microservices-dotnet
   
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://transaction_database:27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=_transactiondatabase_9G2sTQ*HM5
+    ports:
+      - "8081:8081"
+    volumes:
+      - mongo_data:/data/db
+    deploy:
+      replicas: 1
+    networks:
+      - microservices-dotnet
+
   portainer:
-    image: portainer/portainer-ce
+    image: portainer/portainer-ce:latest
+    ports:
+      - "9090:9000"
+    volumes:
+      - portainer_data:/data
+    deploy:
+      replicas: 1
     networks:
       - microservices-dotnet
 
