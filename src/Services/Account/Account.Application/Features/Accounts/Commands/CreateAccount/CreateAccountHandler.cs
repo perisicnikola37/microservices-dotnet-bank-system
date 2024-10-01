@@ -7,13 +7,13 @@ namespace Account.Application.Features.Accounts.Commands.CreateAccount;
 public class CreateAccountHandler(
     IAccountRepository accountRepository,
     IMapper mapper)
-    : IRequestHandler<CreateAccountCommand, Guid>
+    : IRequestHandler<CreateAccountCommand, CreateAccountResponse>
     {
-    public async Task<Guid> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
+    public async Task<CreateAccountResponse> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
         var accountEntity = mapper.Map<Domain.Entities.Account>(request);
         var newAccount = await accountRepository.AddAsync(accountEntity!);
         
-        return newAccount.Id;
+        return new CreateAccountResponse(newAccount.Id, newAccount.CustomerId, newAccount.Balance);
     }
     }

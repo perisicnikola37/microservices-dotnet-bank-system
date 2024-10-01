@@ -1,5 +1,3 @@
-version: '3.4'
-
 x-db-env: &db-env
   POSTGRES_USER: admin
   POSTGRES_PASSWORD: _accountdatabase_RjmORhePFbuypx
