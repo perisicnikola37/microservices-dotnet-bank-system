@@ -3,26 +3,29 @@ name: Account API tests
 on:
   push:
     branches:
-      - develop  
+      - develop
   pull_request:
     branches:
-      - develop  
+      - develop
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
+        uses: actions/checkout@v4
+      
       - name: Setup .NET
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'  
+          dotnet-version: '9.0.x' 
 
-      - name: Restore dependencies
-        run: dotnet restore ./src/Services/Account/Account.Test/Account.Test.csproj
+      - name: Install dependencies
+        run: dotnet restore ./src/Services/Account/Account.Test/Account.Test.csproj  
 
-      - name: Run tests
-        run: dotnet test ./src/Services/Account/Account.Test/Account.Test.csproj --no-build --verbosity normal
+      - name: Build
+        run: dotnet build ./src/Services/Account/Account.Test/Account.Test.csproj  
+
+      - name: Test with the dotnet CLI
+        run: dotnet test ./src/Services/Account/Account.Test/Account.Test.csproj --no-build --verbosity normal 
