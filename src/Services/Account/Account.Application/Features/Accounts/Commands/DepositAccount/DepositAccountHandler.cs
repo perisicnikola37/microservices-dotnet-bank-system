@@ -3,14 +3,14 @@ using Account.Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Account.Application.Features.Accounts.Commands.Updating
+namespace Account.Application.Features.Accounts.Commands.DepositAccount
 {
-    public class UpdateAccountHandler(
+    public class DepositAccountHandler(
         IAccountRepository accountRepository,
-        ILogger<UpdateAccountHandler> logger) 
-        : IRequestHandler<UpdateAccountCommand>
+        ILogger<DepositAccountHandler> logger) 
+        : IRequestHandler<DepositAccountCommand>
     {
-        public async Task Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
+    public async Task Handle(DepositAccountCommand request, CancellationToken cancellationToken)
         {
             var accountUpdate = await accountRepository.GetByIdAsync(request.AccountId);
             if (accountUpdate is null)
@@ -25,11 +25,11 @@ namespace Account.Application.Features.Accounts.Commands.Updating
                 throw new UnauthorizedAccessException();
             }
 
-            // Update the account balance
+            // Perform deposit
             accountUpdate.Balance += request.Amount;
 
             await accountRepository.UpdateAsync(accountUpdate);
-            logger.LogInformation($"Account updated successfully. AccountId: {request.AccountId}, New Balance: {accountUpdate.Balance}");
+            logger.LogInformation($"Deposit successful for AccountId: {request.AccountId}, New Balance: {accountUpdate.Balance}");
         }
     }
 }

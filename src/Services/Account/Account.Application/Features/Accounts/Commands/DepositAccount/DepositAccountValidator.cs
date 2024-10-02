@@ -1,14 +1,12 @@
 using Account.Application.Contracts.Messages;
 using FluentValidation;
 
-namespace Account.Application.Features.Accounts.Commands.Withdrawing;
+namespace Account.Application.Features.Accounts.Commands.DepositAccount;
 
-public class WithdrawValidator : AbstractValidator<WithdrawCommand>
+public class DepositAccountValidator : AbstractValidator<DepositAccountCommand>
     {
-    public WithdrawValidator()
+    public DepositAccountValidator()
     {
-        RuleFor(x => x.AccountId)
-            .NotEqual(Guid.Empty).WithMessage(AccountMessages.AccountRequired);
         RuleFor(x => x.CustomerId)
             .NotEqual(Guid.Empty).WithMessage(AccountMessages.CustomerRequired);
         RuleFor(x => x.Amount)

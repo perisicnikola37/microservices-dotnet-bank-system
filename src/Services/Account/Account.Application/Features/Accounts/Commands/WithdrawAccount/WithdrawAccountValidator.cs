@@ -1,16 +1,16 @@
 using Account.Application.Contracts.Messages;
 using FluentValidation;
 
-namespace Account.Application.Features.Accounts.Commands.Updating;
+namespace Account.Application.Features.Accounts.Commands.WithdrawAccount;
 
-public class UpdateAccountValidator : AbstractValidator<UpdateAccountCommand>
+public class WithdrawAccountValidator : AbstractValidator<WithdrawAccountCommand>
     {
-    public UpdateAccountValidator()
+    public WithdrawAccountValidator()
     {
-        RuleFor(x => x.CustomerId)
-            .NotEqual(Guid.Empty).WithMessage(AccountMessages.CustomerRequired);
         RuleFor(x => x.AccountId)
             .NotEqual(Guid.Empty).WithMessage(AccountMessages.AccountRequired);
+        RuleFor(x => x.CustomerId)
+            .NotEqual(Guid.Empty).WithMessage(AccountMessages.CustomerRequired);
         RuleFor(x => x.Amount)
             .NotEmpty().WithMessage(AccountMessages.AmountRequired)
             .NotNull().WithMessage(AccountMessages.AmountRequired)

@@ -6,13 +6,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Account.Application.Features.Accounts.Queries.GetAccount
     {
-    public class AccountQueryHandler(
+    public class GetAccountQueryHandler(
         IAccountRepository accountRepository,
         IMapper mapper,
-        ILogger<AccountQueryHandler> logger) 
-        : IRequestHandler<AccountQueryRequest, GetAccountResponse>
+        ILogger<GetAccountQueryHandler> logger) 
+        : IRequestHandler<GetAccountQueryRequest, GetAccountResponse>
         {
-        public async Task<GetAccountResponse> Handle(AccountQueryRequest request, CancellationToken cancellationToken)
+        public async Task<GetAccountResponse> Handle(GetAccountQueryRequest request, CancellationToken cancellationToken)
         {
             var account = await accountRepository.GetAsync(x => x.Id == request.AccountId);
             

@@ -3,12 +3,12 @@ using Account.Application.Exceptions;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Account.Application.Features.Accounts.Commands.Withdrawing
+namespace Account.Application.Features.Accounts.Commands.WithdrawAccount
 {
     public class WithdrawingHandler(IAccountRepository accountRepository, ILogger<WithdrawingHandler> logger)
-        : IRequestHandler<WithdrawCommand>
+        : IRequestHandler<WithdrawAccountCommand>
         {
-        public async Task Handle(WithdrawCommand request, CancellationToken cancellationToken)
+        public async Task Handle(WithdrawAccountCommand request, CancellationToken cancellationToken)
         {
             var accountUpdate = await accountRepository.GetByIdAsync(request.AccountId);
             if (accountUpdate is null)
@@ -32,7 +32,6 @@ namespace Account.Application.Features.Accounts.Commands.Withdrawing
             // Perform withdrawal
             accountUpdate.Balance -= request.Amount;
 
-            // Update account in the repository
             await accountRepository.UpdateAsync(accountUpdate);
             logger.LogInformation($"Withdrawal successful for AccountId: {request.AccountId}. New Balance: {accountUpdate.Balance}");
         }

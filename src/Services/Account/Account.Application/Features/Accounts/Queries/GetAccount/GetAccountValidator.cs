@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Account.Application.Features.Accounts.Queries.GetAccount;
 
-public class GetAccountValidator : AbstractValidator<AccountQueryRequest>
+public class GetAccountValidator : AbstractValidator<GetAccountQueryRequest>
     {
     public GetAccountValidator()
     {
