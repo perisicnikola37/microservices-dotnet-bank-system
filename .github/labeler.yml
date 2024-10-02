@@ -1,6 +1,3 @@
-# Konfiguracija za GitHub Labeler Akciju
-
-# Definiši svoje etikete
 labels:
   - name: "area/api"
     description: "Indicates an issue related to the API area."
