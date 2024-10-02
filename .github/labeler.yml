@@ -1,0 +1,56 @@
+# Konfiguracija za GitHub Labeler Akciju
+
+# Definiši svoje etikete
+labels:
+  - name: "area/api"
+    description: "Indicates an issue related to the API area."
+    color: "1d76db"
+  - name: "area/application"
+    description: "Indicates an issue related to the Application area."
+    color: "1d76db"
+  - name: "area/domain"
+    description: "Indicates an issue related to the Domain area."
+    color: "1d76db"
+  - name: "area/infrastructure"
+    description: "Indicates an issue related to the Infrastructure area."
+    color: "1d76db"
+  - name: "kind/bug"
+    description: "Categorizes an issue as a bug."
+    color: "d93f0b"
+  - name: "kind/feature"
+    description: "Categorizes an issue as a feature request."
+    color: "9CCC65"
+  - name: "kind/question"
+    description: "Categorizes an issue as a question."
+    color: "f9bb5e"
+  - name: "lifecycle/stale"
+    description: "Denotes an issue or PR that has become stale due to inactivity."
+    color: "784212"
+  - name: "lifecycle/frozen"
+    description: "Indicates that an issue or PR should not be auto-closed."
+    color: "C2F8FF"
+  - name: "P0"
+    description: "High priority item."
+    color: "d93f0b"
+  - name: "P1"
+    description: "Medium priority item."
+    color: "fbca04"
+  - name: "P2"
+    description: "Low priority item."
+    color: "f9bb5e"
+
+repos:
+  - name: perisicnikola37/microservices-dotnet-bank-system
+    labels:
+      - area/api
+      - area/application
+      - area/domain
+      - area/infrastructure
+      - kind/bug
+      - kind/feature
+      - kind/question
+      - lifecycle/stale
+      - lifecycle/frozen
+      - P0
+      - P1
+      - P2
