@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "Customer.GRPC";
+
+package greet;
+
+service CustomerProtoService {
+  rpc CheckCustomer (CheckCustomerRequest) returns (CheckCustomerModel);
+}
+
+message CheckCustomerRequest{
+  string id = 1;
+}
+
+message CheckCustomerModel{
+  bool result = 1;
+}

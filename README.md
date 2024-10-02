@@ -70,6 +70,24 @@ Password: _accountdatabase_RjmORhePFbuypx
 
 <hr />
 
+### Customer API
+
+URL: http://localhost:8002/swagger/index.html
+
+### Customer Database (PostgreSQL)
+
+Credentials:
+
+Host name: account_database
+
+Database name: _customerdatabase_wy5ZBd3w!D@i^
+
+Username: admin
+
+Password: _customerdatabase_$MA&So6HzVj@-
+
+<hr />
+
 ### Transaction API
 
 URL: http://localhost:8003/swagger/index.html 

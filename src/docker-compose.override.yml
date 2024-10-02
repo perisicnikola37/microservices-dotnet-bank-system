@@ -13,6 +13,17 @@ services:
       - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+      
+  customer_database:
+    container_name: customer_database
+    environment:
+      <<: *db-env
+      POSTGRES_DB: _customerdatabase_wy5ZBd3w!D@i^
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
         
   transaction_database:
     container_name: transaction_database
@@ -32,8 +43,8 @@ services:
       RABBITMQ_DEFAULT_USER: admin@gmail.com
       RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
 
-  account.api:
-    container_name: account.api
+  account_api:
+    container_name: account_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;User Id=admin;Password=_accountdatabase_RjmORhePFbuypx;"
@@ -42,9 +53,30 @@ services:
       - rabbitmq
     ports:
       - "8001:8080"
-        
-  transaction.api:
-    container_name: transaction.api
+      
+  customer_api:
+    container_name: customer_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=Server=customer_database;Port=5432;Database=_customerdatabase_wy5ZBd3w!D@i^;User Id=admin;Password=_customerdatabase_$MA&So6HzVj@-;"
+    depends_on:
+      - customer_database
+      - rabbitmq
+    ports:
+      - "8002:8080"
+      
+  customer_grpc:
+    container_name: customer_grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+        - "DatabaseSettings:ConnectionString=Server=customer_database;Port=5432;Database=_customerdatabase_wy5ZBd3w!D@i^;User Id=admin;Password=_customerdatabase_$MA&So6HzVj@-;"
+    depends_on:
+      - customer_database
+    ports:
+      - "5001:8080"
+  
+  transaction_api:
+    container_name: transaction_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     depends_on:
