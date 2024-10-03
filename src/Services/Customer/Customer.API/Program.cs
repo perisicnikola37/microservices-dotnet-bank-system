@@ -6,16 +6,24 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationServices();
+InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+var customerApiVersion = builder.Configuration["APIVersion"];
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(s =>
 {
-    s.SwaggerDoc($"v1.0.0", new OpenApiInfo
+    // Define the API versioning
+    s.SwaggerDoc($"v{customerApiVersion}", new OpenApiInfo
     {
-        Title = "Account service",
-        Version = "v1.0.0", 
+        Title = "Customer service",
+        Version = $"v{customerApiVersion}", 
         Description = "Service for managing customers.",
         Contact = new OpenApiContact
         {
@@ -33,9 +41,6 @@ builder.Services.AddSwaggerGen(s =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddApplicationServices();
-InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 

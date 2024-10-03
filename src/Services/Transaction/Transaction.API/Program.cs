@@ -39,9 +39,29 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(Program));
+
+var transactionApiVersion = builder.Configuration["APIVersion"];
+
 builder.Services.AddSwaggerGen(s =>
 {
-    s.SwaggerDoc("v1", new OpenApiInfo { Title = "Transaction.API", Version = "v1" });
+    // Define the API versioning
+    s.SwaggerDoc($"v{transactionApiVersion}", new OpenApiInfo
+    {
+        Title = "Transaction service",
+        Version = $"v{transactionApiVersion}", 
+        Description = "Service for managing transactions.",
+        Contact = new OpenApiContact
+        {
+            Name = "Nikola Perišić",
+            Email = "nikola.perisic@vegait.rs",
+            Url = new Uri("https://github.com/perisicnikola37")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "LinkedIn",
+            Url = new Uri("https://www.linkedin.com/in/perisicnikola37")
+        }
+    });
 });
 
 builder.Services.AddHealthChecks()

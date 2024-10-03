@@ -1,18 +1,20 @@
 using Account.Application;
 using Account.Infrastructure;
 using Account.Infrastructure.Persistence;
-using ApiVersioningLib;
 using HealthChecks.UI.Client;
 using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-var globalStore = ApiVersioning.Instance;
-globalStore.AddService("AccountService", "1.0"); 
-var accountApiVersion = globalStore.GetServiceVersion("AccountService");
-
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApplicationServices();
+InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+var accountApiVersion = builder.Configuration["APIVersion"];
 
 builder.Services.AddEndpointsApiExplorer();
 
@@ -58,10 +60,6 @@ builder.Services.Configure<MassTransitHostOptions>(conf =>
 });
 
 builder.Services.AddControllers();
-
-InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
-builder.Services.AddApplicationServices();
-builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
