@@ -1,20 +1,38 @@
-version: '3.4'
-
-x-db-env: &db-env
-  POSTGRES_USER: admin
-  POSTGRES_PASSWORD: _start_aY9@K_baG_end_
+## Each database name is unique and follows the following syntax: "_{$database_name}_{$random_string}".
+## Each database password is unique and follows the following syntax: "_{$database_name}p_{$random_string}".
 
 services:
   account_database:
     container_name: account_database
     environment:
-      <<: *db-env
-      POSTGRES_DB: _accountdatabase_Wc1#713mb^JQQ+
+      POSTGRES_DB: _accountdatabase_gpQcTBtS3NE1S
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: _accountdatabasep_wPRhN1iCfGsb
     restart: always
     ports:
       - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - account_postgres_data:/var/lib/postgresql/data/
+      
+  customer_database:
+    container_name: customer_database
+    environment:
+      POSTGRES_DB: _customerdatabase_PORfERJCaF1p
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: _customerdatabasep_4vvFpVXgTJd
+    restart: always
+    ports:
+      - "5434:5432"
+    volumes:
+      - customer_postgres_data:/var/lib/postgresql/data/
+        
+  transaction_database:
+    container_name: transaction_database
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
 
   rabbitmq:
     container_name: rabbitmq
@@ -26,16 +44,46 @@ services:
       RABBITMQ_DEFAULT_USER: admin@gmail.com
       RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
 
-  account.api:
-    container_name: account.api
+  account_api:
+    container_name: account_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;Username=admin;Password=_start_aY9@K_baG_end_;"
+      - "ConnectionStrings:AccountConnectionString=Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
     depends_on:
       - account_database
       - rabbitmq
     ports:
       - "8001:8080"
+
+  customer_api:
+    container_name: customer_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:CustomerConnectionString=Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+    depends_on:
+      - customer_database
+    ports:
+      - "8002:8080"
+      
+  customer_grpc:
+    container_name: customer_grpc
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:CustomerConnectionString=Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+    depends_on:
+      - customer_database
+    ports:
+      - "5001:8080"
+  
+  transaction_api:
+    container_name: transaction_api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - transaction_database
+      - rabbitmq
+    ports:
+      - "8003:8080"
 
   pgadmin:
     container_name: pgadmin
@@ -47,6 +95,18 @@ services:
       - "5050:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
+  
+  mongo-express:
+    image: mongo-express
+    environment:
+      - ME_CONFIG_MONGODB_URL=mongodb://transaction_database:27017
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=_transactiondatabase_9G2sTQ*HM5
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - mongo_data:/data/db
 
   portainer:
     container_name: portainer

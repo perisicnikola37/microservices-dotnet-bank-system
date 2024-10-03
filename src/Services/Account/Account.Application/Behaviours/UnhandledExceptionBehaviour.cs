@@ -20,10 +20,5 @@ namespace Account.Application.Behaviours
                 throw;
             }
         }
-
-        public Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
-        {
-            throw new NotImplementedException();
-        }
         }
     }

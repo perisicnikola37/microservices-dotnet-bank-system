@@ -8,7 +8,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
-const string accountApiVersion = ApiVersioningExtensions.AccountApiVersion;
+var globalStore = ApiVersioning.Instance;
+globalStore.AddService("AccountService", "1.0"); 
+var accountApiVersion = globalStore.GetServiceVersion("AccountService");
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +39,7 @@ builder.Services.AddSwaggerGen(s =>
 });
 
 builder.Services.AddHealthChecks()
-    .AddRabbitMQ(builder.Configuration["EventBusSettings:HostAddress"]!, name: "account_transaction-rabbitmq_bus")
+    .AddRabbitMQ(builder.Configuration["EventBusSettings:HostAddress"]!, name: "account-transaction-rabbitmq_bus")
     .AddDbContextCheck<AccountDatabaseContext>();
 
 builder.Services.AddMassTransit(conf =>

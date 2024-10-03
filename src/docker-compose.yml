@@ -1,19 +1,51 @@
-version: '3.4'
-
 services:
   account_database:
     image: postgres
     networks:
       - microservices-dotnet
+      
+  customer_database:
+    image: postgres
+    networks:
+      - microservices-dotnet
   
-  account.api:
+  transaction_database:
+    image: mongo
+    networks:
+      - microservices-dotnet
+  
+  account_api:
     image: ${DOCKER_REGISTRY-}accountapi
     build:
       context: .
       dockerfile: Services/Account/Account.API/Dockerfile
     networks:
       - microservices-dotnet
+    
+  customer_api:
+    image: ${DOCKER_REGISTRY-}customerapi
+    build:
+      context: .
+      dockerfile: Services/Customer/Customer.API/Dockerfile
+    networks:
+      - microservices-dotnet
+        
+  customer_grpc:
+    image: ${DOCKER_REGISTRY-}customergrpc
+    build:
+      context: .
+      dockerfile: Services/Customer/Customer.GRPC/Dockerfile
+    networks:
+      - microservices-dotnet
   
+  transaction_api:
+    image: ${DOCKER_REGISTRY-}transactionapi
+    build:
+      context: .
+      dockerfile: Services/Transaction/Transaction.API/Dockerfile
+    networks:
+      - microservices-dotnet
+    
   rabbitmq:
     image: rabbitmq:3-management-alpine
     networks:
@@ -23,16 +55,23 @@ services:
     image: dpage/pgadmin4
     networks:
       - microservices-dotnet
+      
+  mongo-express:
+    image: mongo-express
+    networks:
+      - microservices-dotnet
   
   portainer:
     image: portainer/portainer-ce
     networks:
       - microservices-dotnet
-
+    
 volumes:
-  portainer_data:
-  postgres_data:
+  account_postgres_data:
+  customer_postgres_data:
+  mongo_data:
   pgadmin_data:
+  portainer_data:
 
 networks:
   microservices-dotnet:
