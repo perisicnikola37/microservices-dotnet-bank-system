@@ -65,12 +65,13 @@ services:
     image: portainer/portainer-ce
     networks:
       - microservices-dotnet
-
+    
 volumes:
+  account_postgres_data:
+  customer_postgres_data:
   mongo_data:
-  portainer_data:
-  postgres_data:
   pgadmin_data:
+  portainer_data:
 
 networks:
   microservices-dotnet:

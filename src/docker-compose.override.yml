@@ -1,29 +1,30 @@
-x-db-env: &db-env
-  POSTGRES_USER: admin
-  POSTGRES_PASSWORD: _accountdatabase_RjmORhePFbuypx
+## Each database name is unique and follows the following syntax: "_{$database_name}_{$random_string}".
+## Each database password is unique and follows the following syntax: "_{$database_name}p_{$random_string}".
 
 services:
   account_database:
     container_name: account_database
     environment:
-      <<: *db-env
-      POSTGRES_DB: _accountdatabase_Wc1#713mb^JQQ+
+      POSTGRES_DB: _accountdatabase_gpQcTBtS3NE1S
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: _accountdatabasep_wPRhN1iCfGsb
     restart: always
     ports:
       - "5433:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - account_postgres_data:/var/lib/postgresql/data/
       
   customer_database:
     container_name: customer_database
     environment:
-      <<: *db-env
-      POSTGRES_DB: _customerdatabase_wy5ZBd3w!D@i^
+      POSTGRES_DB: _customerdatabase_PORfERJCaF1p
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: _customerdatabasep_4vvFpVXgTJd
     restart: always
     ports:
-      - "5432:5432"
+      - "5434:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - customer_postgres_data:/var/lib/postgresql/data/
         
   transaction_database:
     container_name: transaction_database
@@ -47,21 +48,20 @@ services:
     container_name: account_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:AccountConnectionString=Server=account_database;Port=5432;Database=_accountdatabase_Wc1#713mb^JQQ+;User Id=admin;Password=_accountdatabase_RjmORhePFbuypx;"
+      - "ConnectionStrings:AccountConnectionString=Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
     depends_on:
       - account_database
       - rabbitmq
     ports:
       - "8001:8080"
-      
+
   customer_api:
     container_name: customer_api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=Server=customer_database;Port=5432;Database=_customerdatabase_wy5ZBd3w!D@i^;User Id=admin;Password=_customerdatabase_$MA&So6HzVj@-;"
+      - "ConnectionStrings:CustomerConnectionString=Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
     depends_on:
       - customer_database
-      - rabbitmq
     ports:
       - "8002:8080"
       
@@ -69,7 +69,7 @@ services:
     container_name: customer_grpc
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-        - "DatabaseSettings:ConnectionString=Server=customer_database;Port=5432;Database=_customerdatabase_wy5ZBd3w!D@i^;User Id=admin;Password=_customerdatabase_$MA&So6HzVj@-;"
+      - "ConnectionStrings:CustomerConnectionString=Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
     depends_on:
       - customer_database
     ports:

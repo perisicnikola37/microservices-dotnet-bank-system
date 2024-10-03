@@ -62,11 +62,11 @@ Credentials:
 
 Host name: account_database
 
-Database name: _accountdatabase_Wc1#713mb^JQQ+
+Database name: _accountdatabase_gpQcTBtS3NE1S
 
 Username: admin
 
-Password: _accountdatabase_RjmORhePFbuypx
+Password: _accountdatabasep_wPRhN1iCfGsb
 
 <hr />
 
@@ -80,11 +80,11 @@ Credentials:
 
 Host name: account_database
 
-Database name: _customerdatabase_wy5ZBd3w!D@i^
+Database name: _customerdatabase_PORfERJCaF1p
 
 Username: admin
 
-Password: _customerdatabase_$MA&So6HzVj@-
+Password: _customerdatabasep_4vvFpVXgTJd
 
 <hr />
 
@@ -96,7 +96,7 @@ URL: http://localhost:8003/swagger/index.html
 
 Credentials:
 
-Username: admin@gmail.com
+Username: admin
 
 Password: _transactiondatabase_9G2sTQ*HM5
 

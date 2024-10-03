@@ -1,16 +1,16 @@
 using Microsoft.Extensions.Logging;
 
-namespace Customer.Infrastructure.Persistance;
+namespace Customer.Infrastructure.Persistence;
 
-public class CustomerContextSeed
+public class CustomerDatabaseContextSeed
     {
-    public static async Task SeedAsync(CustomerDatabaseContext customerContext, ILogger<CustomerContextSeed> logger)
+    public static async Task SeedAsync(CustomerDatabaseContext customerContext, ILogger<CustomerDatabaseContextSeed> logger)
     {
         if (!customerContext.Customers.Any())
         {
             customerContext.Customers.AddRange(GetPreconfiguredCustomers());
             await customerContext.SaveChangesAsync();
-            logger.LogInformation($"Seed database associated with context {nameof(CustomerContextSeed)}");
+            logger.LogInformation($"Seed database associated with context {nameof(CustomerDatabaseContextSeed)}");
         }
     }
 
