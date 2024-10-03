@@ -75,6 +75,17 @@ services:
     ports:
       - "5001:8080"
   
+  ocelotapigateway:
+    container_name: ocelotapigateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - account_api
+      - customer_api
+      - transaction_api
+    ports:
+      - "8010:8080"
+  
   transaction_api:
     container_name: transaction_api
     environment:

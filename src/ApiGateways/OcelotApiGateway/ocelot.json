@@ -1,0 +1,167 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/accounts",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/accounts",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/accounts/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/accounts/{id}",
+      "UpstreamHttpMethod": ["GET"],
+      "FileCacheOptions": {
+        "TtlSeconds": 30,
+        "Region": "account-{id}"
+      },
+      "CacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "account"
+      },
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "Exceeded quota!",
+        "HttpStatusCode": 419,
+        "EnableRateLimiting": true,
+        "Period": "10s",
+        "PeriodTimespan": 1,
+        "Limit": 3
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/accounts/{id}/deposit",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/accounts/{id}/deposit",
+      "UpstreamHttpMethod": ["PUT"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/accounts/{id}/withdraw",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "account_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/accounts/{id}/withdraw",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customers",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/customers",
+      "UpstreamHttpMethod": ["POST"]
+    },
+    {
+      "DownstreamPathTemplate": "/api/customers/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "customer_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/customers/{id}",
+      "UpstreamHttpMethod": ["GET"],
+      "FileCacheOptions": {
+        "TtlSeconds": 30,
+        "Region": "customer-{id}"
+      },
+      "CacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "customer"
+      },
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "Exceeded quota!",
+        "HttpStatusCode": 419,
+        "EnableRateLimiting": true,
+        "Period": "10s",
+        "PeriodTimespan": 1,
+        "Limit": 3
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/transactions/{accountId}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "transaction_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/transactions/{accountId}",
+      "UpstreamHttpMethod": ["GET"],
+      "FileCacheOptions": {
+        "TtlSeconds": 30,
+        "Region": "transaction-{accountId}"
+      },
+      "CacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "transaction"
+      },
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "Exceeded quota!",
+        "HttpStatusCode": 419,
+        "EnableRateLimiting": true,
+        "Period": "10s",
+        "PeriodTimespan": 1,
+        "Limit": 3
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/transactions",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "transaction_api",
+          "Port": "8080"
+        }
+      ],
+      "UpstreamPathTemplate": "/transactions",
+      "UpstreamHttpMethod": ["GET"],
+      "CacheOptions": {
+        "TtlSeconds": 20,
+        "Region": "transactions"
+      },
+      "RateLimitOptions": {
+        "DisableRateLimitHeaders": false,
+        "QuotaExceededMessage": "Exceeded quota!",
+        "HttpStatusCode": 419,
+        "EnableRateLimiting": true,
+        "Period": "10s",
+        "PeriodTimespan": 1,
+        "Limit": 3
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:8010"
+  }
+}

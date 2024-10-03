@@ -37,6 +37,14 @@ services:
       dockerfile: Services/Customer/Customer.GRPC/Dockerfile
     networks:
       - microservices-dotnet
+    
+  ocelotapigateway:
+    image: ${DOCKER_REGISTRY-}ocelotapigateway
+    build:
+      context: .
+      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    networks:
+      - microservices-dotnet
   
   transaction_api:
     image: ${DOCKER_REGISTRY-}transactionapi
