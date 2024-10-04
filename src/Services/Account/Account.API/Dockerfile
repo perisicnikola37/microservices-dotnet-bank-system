@@ -13,13 +13,14 @@ COPY ["Services/Account/Account.Infrastructure/Account.Infrastructure.csproj", "
 RUN dotnet restore "./Services/Account/Account.API/./Account.API.csproj"
 COPY . .
 WORKDIR "/src/Services/Account/Account.API"
-RUN dotnet build "./Account.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "Account.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./Account.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Account.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /src/Services/Account/Account.Infrastructure/Persistence/Accounts.json /app/Accounts.json
 ENTRYPOINT ["dotnet", "Account.API.dll"]

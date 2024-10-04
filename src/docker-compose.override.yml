@@ -1,6 +1,9 @@
 ## Each database name is unique and follows the following syntax: "_{$database_name}_{$random_string}".
 ## Each database password is unique and follows the following syntax: "_{$database_name}p_{$random_string}".
 
+x-run-migrations-env: &run-migrations
+  RunMigrations: true
+
 services:
   account_database:
     container_name: account_database
@@ -43,12 +46,14 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: admin@gmail.com
       RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
-
+      RABBITMQ_LOG_LEVEL: error
+  
   account_api:
     container_name: account_api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:AccountConnectionString=Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__AccountConnectionString: "Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
     depends_on:
       - account_database
       - rabbitmq
@@ -58,8 +63,9 @@ services:
   customer_api:
     container_name: customer_api
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:CustomerConnectionString=Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
     depends_on:
       - customer_database
     ports:
@@ -68,13 +74,25 @@ services:
   customer_grpc:
     container_name: customer_grpc
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:CustomerConnectionString=Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+        <<: *run-migrations
+        ASPNETCORE_ENVIRONMENT: Development
+        ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
     depends_on:
       - customer_database
     ports:
       - "5001:8080"
   
+  transaction_api:
+    container_name: transaction_api
+    environment:
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - transaction_database
+      - rabbitmq
+    ports:
+      - "8003:8080"
+      
   ocelotapigateway:
     container_name: ocelotapigateway
     environment:
@@ -85,16 +103,6 @@ services:
       - transaction_api
     ports:
       - "8010:8080"
-  
-  transaction_api:
-    container_name: transaction_api
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    depends_on:
-      - transaction_database
-      - rabbitmq
-    ports:
-      - "8003:8080"
 
   pgadmin:
     container_name: pgadmin

@@ -21,4 +21,5 @@ RUN dotnet publish "Transaction.API.csproj" -c $BUILD_CONFIGURATION -o /app/publ
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+COPY --from=build /src/Services/Transaction/Transaction.API/Data/Transactions.json /app/Transactions.json
 ENTRYPOINT ["dotnet", "Transaction.API.dll"]

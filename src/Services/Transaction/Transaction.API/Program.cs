@@ -4,6 +4,8 @@ using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
+using Transaction.API;
+using Transaction.API.Data;
 using Transaction.API.Data.Interfaces;
 using Transaction.API.EventBusConsumer;
 using Transaction.API.Repositories;
@@ -33,7 +35,8 @@ builder.Services.Configure<MassTransitHostOptions>(conf =>
     conf.StopTimeout = TimeSpan.FromMinutes(1);
 });
 
-builder.Services.AddScoped<ITransactionContext, Transaction.API.Data.TransactionContext>();
+
+builder.Services.AddScoped<ITransactionContext, TransactionDatabaseContext>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddControllers();
@@ -69,7 +72,20 @@ builder.Services.AddHealthChecks()
     .AddMongoDb(builder.Configuration["DatabaseSettings:ConnectionString"]!, "MongoDb Health", HealthStatus.Degraded);
 
 var app = builder.Build();
-    
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ITransactionContext>();
+    var configuration = services.GetRequiredService<IConfiguration>();
+
+    if (configuration.GetValue<bool>("RunMigrations"))
+    {
+        Console.WriteLine("Running migrations...");
+        TransactionDatabaseContextSeed.SeedData(context.Transactions);
+    }
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();

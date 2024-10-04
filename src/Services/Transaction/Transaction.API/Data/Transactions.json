@@ -1,0 +1,474 @@
+[
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bba",
+    "AccountId": "a3372135-ea3d-4eb9-8209-5a36634b2bba",
+    "Amount": 10000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-01T00:00:00Z"
+  },
+  {
+    "Id": "b95f7d54-c292-4e56-b05d-944fe44bc9e6",
+    "AccountId": "b95f7d54-c292-4e56-b05d-944fe44bc9e6",
+    "Amount": 12500,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-02T00:00:00Z"
+  },
+  {
+    "Id": "c56c75b9-93de-4eec-9c89-f3f6e8265e9c",
+    "AccountId": "c56c75b9-93de-4eec-9c89-f3f6e8265e9c",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-03T00:00:00Z"
+  },
+  {
+    "Id": "d670ef04-579c-4f41-b10e-bf2e9e2b64c9",
+    "AccountId": "d670ef04-579c-4f41-b10e-bf2e9e2b64c9",
+    "Amount": 45000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-04T00:00:00Z"
+  },
+  {
+    "Id": "e84dfc30-1c85-4b6f-b2bb-cd614d6eb50f",
+    "AccountId": "e84dfc30-1c85-4b6f-b2bb-cd614d6eb50f",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-05T00:00:00Z"
+  },
+  {
+    "Id": "f1c4e857-bb9e-4872-b5b1-b3c92e3df450",
+    "AccountId": "f1c4e857-bb9e-4872-b5b1-b3c92e3df450",
+    "Amount": 35000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-06T00:00:00Z"
+  },
+  {
+    "Id": "077b401f-d82f-4a99-9672-e4d7c04c80a5",
+    "AccountId": "077b401f-d82f-4a99-9672-e4d7c04c80a5",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-07T00:00:00Z"
+  },
+  {
+    "Id": "19c8f75c-260f-4b06-a073-81e0481bff52",
+    "AccountId": "19c8f75c-260f-4b06-a073-81e0481bff52",
+    "Amount": 60000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-08T00:00:00Z"
+  },
+  {
+    "Id": "26e58de6-e89a-4f6a-a3b5-bb342391b35e",
+    "AccountId": "26e58de6-e89a-4f6a-a3b5-bb342391b35e",
+    "Amount": 70000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-09T00:00:00Z"
+  },
+  {
+    "Id": "38a1b724-6509-429e-b49d-73a1c90a8d85",
+    "AccountId": "38a1b724-6509-429e-b49d-73a1c90a8d85",
+    "Amount": 80000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-10T00:00:00Z"
+  },
+  {
+    "Id": "49e8f8ae-4571-49cf-b81d-b98e7b27d163",
+    "AccountId": "49e8f8ae-4571-49cf-b81d-b98e7b27d163",
+    "Amount": 90000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-11T00:00:00Z"
+  },
+  {
+    "Id": "5aef6e7d-71d3-474e-9a93-646baf9e4d58",
+    "AccountId": "5aef6e7d-71d3-474e-9a93-646baf9e4d58",
+    "Amount": 100000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-12T00:00:00Z"
+  },
+  {
+    "Id": "6c88700d-d14e-44aa-9e2c-0d8deee622c7",
+    "AccountId": "6c88700d-d14e-44aa-9e2c-0d8deee622c7",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-13T00:00:00Z"
+  },
+  {
+    "Id": "76302f82-f785-4429-9e86-634b624e61f4",
+    "AccountId": "76302f82-f785-4429-9e86-634b624e61f4",
+    "Amount": 15000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-14T00:00:00Z"
+  },
+  {
+    "Id": "85316c8d-5eb1-4870-b3a6-1655d3c9b2e1",
+    "AccountId": "85316c8d-5eb1-4870-b3a6-1655d3c9b2e1",
+    "Amount": 95000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-15T00:00:00Z"
+  },
+  {
+    "Id": "9520fd77-8186-4c01-b7a7-85c8c79eb3b7",
+    "AccountId": "9520fd77-8186-4c01-b7a7-85c8c79eb3b7",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-16T00:00:00Z"
+  },
+  {
+    "Id": "a15b4b90-2b41-4336-b317-47e9c98e43ab",
+    "AccountId": "a15b4b90-2b41-4336-b317-47e9c98e43ab",
+    "Amount": 40000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-17T00:00:00Z"
+  },
+  {
+    "Id": "b2303e63-b899-4e1e-b3dc-1f7e72d066f3",
+    "AccountId": "b2303e63-b899-4e1e-b3dc-1f7e72d066f3",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-18T00:00:00Z"
+  },
+  {
+    "Id": "c3886bc0-719f-4e60-8d09-ea394e88ed24",
+    "AccountId": "c3886bc0-719f-4e60-8d09-ea394e88ed24",
+    "Amount": 25000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-19T00:00:00Z"
+  },
+  {
+    "Id": "d1e8d4ec-b76f-4266-beb1-09c3ed9c5283",
+    "AccountId": "d1e8d4ec-b76f-4266-beb1-09c3ed9c5283",
+    "Amount": 15000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-20T00:00:00Z"
+  },
+  {
+    "Id": "e3f5d1ab-fbdf-408e-b4b4-cb756805e12c",
+    "AccountId": "e3f5d1ab-fbdf-408e-b4b4-cb756805e12c",
+    "Amount": 60000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-21T00:00:00Z"
+  },
+  {
+    "Id": "f50a28d2-fb20-4b3c-b7c0-03c77c1683af",
+    "AccountId": "f50a28d2-fb20-4b3c-b7c0-03c77c1683af",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-22T00:00:00Z"
+  },
+  {
+    "Id": "0b095c04-2947-47e5-a663-4c7f6748a7b0",
+    "AccountId": "0b095c04-2947-47e5-a663-4c7f6748a7b0",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-23T00:00:00Z"
+  },
+  {
+    "Id": "19654e87-d40c-4b5e-bb19-fc52f1aaf0f9",
+    "AccountId": "19654e87-d40c-4b5e-bb19-fc52f1aaf0f9",
+    "Amount": 70000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-24T00:00:00Z"
+  },
+  {
+    "Id": "2d9fa6f2-e91a-4d39-a236-f6efecfa813e",
+    "AccountId": "2d9fa6f2-e91a-4d39-a236-f6efecfa813e",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-25T00:00:00Z"
+  },
+  {
+    "Id": "2fb0ffb2-4139-4e6f-b7b1-43fa5b3b04e3",
+    "AccountId": "2fb0ffb2-4139-4e6f-b7b1-43fa5b3b04e3",
+    "Amount": 15000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-26T00:00:00Z"
+  },
+  {
+    "Id": "5cd82b76-e1cb-4375-82b6-1c5d3cbd3b8a",
+    "AccountId": "5cd82b76-e1cb-4375-82b6-1c5d3cbd3b8a",
+    "Amount": 95000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-27T00:00:00Z"
+  },
+  {
+    "Id": "7e2a55b5-4971-4899-b840-d43fdb8ff0e7",
+    "AccountId": "7e2a55b5-4971-4899-b840-d43fdb8ff0e7",
+    "Amount": 25000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-28T00:00:00Z"
+  },
+  {
+    "Id": "8fce751e-3cb1-473f-b317-74e01a5470d5",
+    "AccountId": "8fce751e-3cb1-473f-b317-74e01a5470d5",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-29T00:00:00Z"
+  },
+  {
+    "Id": "a5ac009c-f49b-4ff9-9f26-6cd3d494fdb9",
+    "AccountId": "a5ac009c-f49b-4ff9-9f26-6cd3d494fdb9",
+    "Amount": 45000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-01-30T00:00:00Z"
+  },
+  {
+    "Id": "b2452c9f-e11f-4059-8d79-752b7636e185",
+    "AccountId": "b2452c9f-e11f-4059-8d79-752b7636e185",
+    "Amount": 60000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-01-31T00:00:00Z"
+  },
+  {
+    "Id": "c3f13c2d-5c01-48ab-bc47-f7ee56776dc8",
+    "AccountId": "c3f13c2d-5c01-48ab-bc47-f7ee56776dc8",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-01T00:00:00Z"
+  },
+  {
+    "Id": "e1079f71-65c1-4ed9-a9cd-5c5b6e53125e",
+    "AccountId": "e1079f71-65c1-4ed9-a9cd-5c5b6e53125e",
+    "Amount": 40000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-03T00:00:00Z"
+  },
+  {
+    "Id": "e94b3762-5f54-4f1f-bc9f-c3c9bcf7d503",
+    "AccountId": "e94b3762-5f54-4f1f-bc9f-c3c9bcf7d503",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-04T00:00:00Z"
+  },
+  {
+    "Id": "07fc19c2-5874-4f2d-8e62-8b31c18162f7",
+    "AccountId": "07fc19c2-5874-4f2d-8e62-8b31c18162f7",
+    "Amount": 15000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-05T00:00:00Z"
+  },
+  {
+    "Id": "19810ebd-e191-4673-b844-66f93715ae54",
+    "AccountId": "19810ebd-e191-4673-b844-66f93715ae54",
+    "Amount": 35000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-06T00:00:00Z"
+  },
+  {
+    "Id": "2b06a1af-c1cb-49bb-8172-fbe49c67bb25",
+    "AccountId": "2b06a1af-c1cb-49bb-8172-fbe49c67bb25",
+    "Amount": 80000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-07T00:00:00Z"
+  },
+  {
+    "Id": "47bb2e48-404e-42c8-8b1d-4e2d2c5b08e3",
+    "AccountId": "47bb2e48-404e-42c8-8b1d-4e2d2c5b08e3",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-08T00:00:00Z"
+  },
+  {
+    "Id": "51c02e29-70b1-4be5-81e8-f6eb6da74e88",
+    "AccountId": "51c02e29-70b1-4be5-81e8-f6eb6da74e88",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-09T00:00:00Z"
+  },
+  {
+    "Id": "75a2f7c2-88b8-46a0-9c04-0be34b40b371",
+    "AccountId": "75a2f7c2-88b8-46a0-9c04-0be34b40b371",
+    "Amount": 45000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-10T00:00:00Z"
+  },
+  {
+    "Id": "829cf3e4-0c98-41cb-bb8a-276f60d29af4",
+    "AccountId": "829cf3e4-0c98-41cb-bb8a-276f60d29af4",
+    "Amount": 75000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-11T00:00:00Z"
+  },
+  {
+    "Id": "93483aa4-e43e-4199-9a77-1f7c5af299ba",
+    "AccountId": "93483aa4-e43e-4199-9a77-1f7c5af299ba",
+    "Amount": 60000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-12T00:00:00Z"
+  },
+  {
+    "Id": "a1180e2e-dc96-44be-9317-b54da84a5ecf",
+    "AccountId": "a1180e2e-dc96-44be-9317-b54da84a5ecf",
+    "Amount": 35000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-13T00:00:00Z"
+  },
+  {
+    "Id": "b7dc4493-2c30-4891-b5c1-f23079c04b0b",
+    "AccountId": "b7dc4493-2c30-4891-b5c1-f23079c04b0b",
+    "Amount": 90000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-14T00:00:00Z"
+  },
+  {
+    "Id": "c2e5289f-3420-4da2-bbaf-91206c0aa9ff",
+    "AccountId": "c2e5289f-3420-4da2-bbaf-91206c0aa9ff",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-15T00:00:00Z"
+  },
+  {
+    "Id": "d6d73e74-5e80-4476-bf75-90c2c7b30a6c",
+    "AccountId": "d6d73e74-5e80-4476-bf75-90c2c7b30a6c",
+    "Amount": 80000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-16T00:00:00Z"
+  },
+  {
+    "Id": "e6b8a63d-bc41-4a54-8fa2-1cdcf5dc872c",
+    "AccountId": "e6b8a63d-bc41-4a54-8fa2-1cdcf5dc872c",
+    "Amount": 45000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-17T00:00:00Z"
+  },
+  {
+    "Id": "0a7456d2-b6be-4082-bb6d-00e396ec4b81",
+    "AccountId": "0a7456d2-b6be-4082-bb6d-00e396ec4b81",
+    "Amount": 60000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-18T00:00:00Z"
+  },
+  {
+    "Id": "0dbf792c-9ae6-4370-b7a4-260f22d61d3f",
+    "AccountId": "0dbf792c-9ae6-4370-b7a4-260f22d61d3f",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-19T00:00:00Z"
+  },
+  {
+    "Id": "35fc6da7-cdd8-4058-b476-76e7f9bd23e0",
+    "AccountId": "35fc6da7-cdd8-4058-b476-76e7f9bd23e0",
+    "Amount": 95000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-20T00:00:00Z"
+  },
+  {
+    "Id": "80ae5f3e-fd83-4dc4-94ed-f4859b582337",
+    "AccountId": "80ae5f3e-fd83-4dc4-94ed-f4859b582337",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-21T00:00:00Z"
+  },
+  {
+    "Id": "879bfb7f-77c5-41a8-b8bc-1b3826587e68",
+    "AccountId": "879bfb7f-77c5-41a8-b8bc-1b3826587e68",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-22T00:00:00Z"
+  },
+  {
+    "Id": "b4db4e0a-c19e-4ca8-97c7-9a90523c51d4",
+    "AccountId": "b4db4e0a-c19e-4ca8-97c7-9a90523c51d4",
+    "Amount": 30000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-23T00:00:00Z"
+  },
+  {
+    "Id": "c7d3f82c-b2b3-4e53-9464-0c6c44bc48cf",
+    "AccountId": "c7d3f82c-b2b3-4e53-9464-0c6c44bc48cf",
+    "Amount": 75000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-24T00:00:00Z"
+  },
+  {
+    "Id": "1f60cb34-5e46-4044-9250-bd580b41bb47",
+    "AccountId": "1f60cb34-5e46-4044-9250-bd580b41bb47",
+    "Amount": 60000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-25T00:00:00Z"
+  },
+  {
+    "Id": "56f8aa26-593c-4eab-80cc-8ec9f4adff32",
+    "AccountId": "56f8aa26-593c-4eab-80cc-8ec9f4adff32",
+    "Amount": 20000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-26T00:00:00Z"
+  },
+  {
+    "Id": "7bc67007-94e1-4852-b05b-17db36af85aa",
+    "AccountId": "7bc67007-94e1-4852-b05b-17db36af85aa",
+    "Amount": 35000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-27T00:00:00Z"
+  },
+  {
+    "Id": "a9bdfb82-1951-4341-91e5-54a372a68c74",
+    "AccountId": "a9bdfb82-1951-4341-91e5-54a372a68c74",
+    "Amount": 90000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 0,
+    "CreatedDate": "2024-02-28T00:00:00Z"
+  },
+  {
+    "Id": "baebf12a-3d99-4c48-a1da-0bb0cce460b5",
+    "AccountId": "baebf12a-3d99-4c48-a1da-0bb0cce460b5",
+    "Amount": 50000,
+    "CustomerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "Type": 1,
+    "CreatedDate": "2024-02-29T00:00:00Z"
+  }
+]

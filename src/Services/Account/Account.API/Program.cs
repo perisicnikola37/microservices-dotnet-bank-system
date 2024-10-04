@@ -68,13 +68,17 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AccountDatabaseContext>();
     var logger = services.GetRequiredService<ILogger<AccountDatabaseContextSeed>>();
+    var configuration = services.GetRequiredService<IConfiguration>(); 
 
     try
     {
         await context.Database.MigrateAsync();
         
-        // Seed the "Account API" database
-        await AccountDatabaseContextSeed.SeedAsync(context, logger);
+        if (configuration.GetValue<bool>("RunMigrations"))
+        {
+            // Seed the "Account API" database
+            await AccountDatabaseContextSeed.SeedDataAsync(context, logger);
+        }
     }
     catch (Exception ex)
     {

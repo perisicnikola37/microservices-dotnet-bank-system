@@ -4,7 +4,7 @@ namespace Customer.Infrastructure.Persistence;
 
 public class CustomerDatabaseContextSeed
     {
-    public static async Task SeedAsync(CustomerDatabaseContext customerContext, ILogger<CustomerDatabaseContextSeed> logger)
+    public static async Task SeedDataAsync(CustomerDatabaseContext customerContext, ILogger<CustomerDatabaseContextSeed> logger)
     {
         if (!customerContext.Customers.Any())
         {
@@ -14,11 +14,9 @@ public class CustomerDatabaseContextSeed
         }
     }
 
-    private static IEnumerable<Domain.Entities.Customer> GetPreconfiguredCustomers()
+    private static List<Domain.Entities.Customer> GetPreconfiguredCustomers()
     {
-        return new List<Domain.Entities.Customer>
-        {
-            new(Guid.Parse("ef533977-e666-4c75-ac4e-ea1de9ea4aef"), "perisicnikola37@gmail.com", "Nikola", "Perišić")
-        };
+        return
+            [new Domain.Entities.Customer(Guid.Parse("ef533977-e666-4c75-ac4e-ea1de9ea4aef"), "perisicnikola37@gmail.com", "Nikola", "Perišić")];
     }
     }

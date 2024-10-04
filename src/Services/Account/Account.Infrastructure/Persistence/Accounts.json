@@ -1,0 +1,72 @@
+[
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bba",
+    "accountId": "a3372135-ea3d-4eb9-8209-5a36634b2bba",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 10200,
+    "createdAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb1",
+    "accountId": "b95f7d54-c292-4e56-b05d-944fe44bc9e6",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 12500,
+    "createdAt": "2024-01-02T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb2",
+    "accountId": "c56c75b9-93de-4eec-9c89-f3f6e8265e9c",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 30000,
+    "createdAt": "2024-01-03T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb3",
+    "accountId": "d670ef04-579c-4f41-b10e-bf2e9e2b64c9",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 45100,
+    "createdAt": "2024-01-04T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb4",
+    "accountId": "e84dfc30-1c85-4b6f-b2bb-cd614d6eb50f",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 20000,
+    "createdAt": "2024-01-05T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb5",
+    "accountId": "f1c4e857-bb9e-4872-b5b1-b3c92e3df450",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 32200,
+    "createdAt": "2024-01-06T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb6",
+    "accountId": "077b401f-d82f-4a99-9672-e4d7c04c80a5",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 50100,
+    "createdAt": "2024-01-07T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb7",
+    "accountId": "19c8f75c-260f-4b06-a073-81e0481bff52",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 60020,
+    "createdAt": "2024-01-08T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb8",
+    "accountId": "26e58de6-e89a-4f6a-a3b5-bb342391b35e",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 70200,
+    "createdAt": "2024-01-09T00:00:00Z"
+  },
+  {
+    "Id": "a3372135-ea3d-4eb9-8209-5a36634b2bb9",
+    "accountId": "a3372135-ea3d-4eb9-8209-5a36634b2bba",
+    "customerId": "ef533977-e666-4c75-ac4e-ea1de9ea4aef",
+    "balance": 15720,
+    "createdAt": "2024-01-10T00:00:00Z"
+  }
+]

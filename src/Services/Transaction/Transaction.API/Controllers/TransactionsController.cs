@@ -9,18 +9,6 @@ namespace Transaction.API.Controllers
     [ApiController]
     public class TransactionsController(ITransactionService transactionService) : ControllerBase
         {
-        [HttpGet("{accountId}")]
-        [ProducesResponseType(typeof(List<TransactionDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesDefaultResponseType]
-        public async Task<ActionResult> GetByAccountId(Guid accountId)
-        {
-            return Ok(await transactionService.GetByAccountId(accountId));
-        }
-
         [HttpGet]
         [ProducesResponseType(typeof(List<TransactionDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -31,6 +19,18 @@ namespace Transaction.API.Controllers
         public async Task<ActionResult> GetWithFilter([FromQuery] RequestFilter filter)
         {
             return Ok(await transactionService.GetWithFilter(filter));
+        }
+
+        [HttpGet("{accountId}")]
+        [ProducesResponseType(typeof(List<TransactionDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> GetByAccountId(Guid accountId)
+        {
+            return Ok(await transactionService.GetByAccountId(accountId));
         }
         }
     }

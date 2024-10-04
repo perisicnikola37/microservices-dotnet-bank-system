@@ -1,6 +1,7 @@
 using MongoDB.Driver;
 using Transaction.API.Data.DTOs.Requests;
 using Transaction.API.Data.Interfaces;
+using Transaction.API.Filters;
 using Transaction.API.Repositories.Interfaces;
 
 namespace Transaction.API.Repositories;
@@ -22,15 +23,16 @@ public class TransactionRepository(ITransactionContext transactionContext) : ITr
 
     public async Task<IEnumerable<Entities.Transaction>> GetWithFilter(RequestFilter filter)
     {
-        var filterBuilder = Builders<Entities.Transaction>.Filter;
+        var filterBuilder = new TransactionFilterBuilder()
+            .WithCustomerId(filter.CustomerId)
+            .WithStartDate(filter.StartDate)
+            .WithEndDate(filter.EndDate);
 
-        var filters = filterBuilder.Eq(x => x.CustomerId, filter.CustomerId) &
-                      filterBuilder.Gte(x => x.CreatedDate, filter.StartDate) &
-                      filterBuilder.Lt(x => x.CreatedDate, filter.EndDate);
+        var combinedFilter = filterBuilder.Build();
 
         return await transactionContext
             .Transactions
-            .Find(filters)
+            .Find(combinedFilter)
             .ToListAsync();
     }
     }
