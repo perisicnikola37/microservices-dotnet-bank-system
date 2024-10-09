@@ -4,6 +4,8 @@
 
 ![68747470733a2f2f692e706f7374696d672e63632f51744234685768442f556e7469746c65642d323032342d30392d32332d313335372d312e706e67](https://github.com/user-attachments/assets/9f8673d8-8e2d-405e-84d3-fcbe3d100e0e)
 
+![screencapture-localhost-8007-healthchecks-ui-2024-10-09-15_31_40](https://github.com/user-attachments/assets/cc2f7eea-649f-4fb2-809d-57dff2f013b6)
+
 ## Message broker
 
 ### RabbitMQ
