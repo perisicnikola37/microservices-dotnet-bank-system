@@ -58,6 +58,7 @@ services:
     depends_on:
       - account_database
       - rabbitmq
+      - elasticsearch
     ports:
       - "8001:8080"
 
