@@ -1,6 +1,5 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Dodavanje potrebnih servisa
 builder.Services.AddControllersWithViews();
 builder.Services.AddHealthChecksUI().AddInMemoryStorage();
 
