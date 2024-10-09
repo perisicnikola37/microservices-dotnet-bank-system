@@ -159,3 +159,16 @@ services:
       - elasticsearch
     ports:
       - "5601:5601" 
+        
+  webstatus:
+    container_name: webstatus
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - HealthChecksUI__HealthChecks__0__Name=Account Health Check
+      - HealthChecksUI__HealthChecks__0__Uri=http://account_api:8080/health-check
+      - HealthChecksUI__HealthChecks__1__Name=Customer Health Check
+      - HealthChecksUI__HealthChecks__1__Uri=http://customer_api:8080/health-check
+      - HealthChecksUI__HealthChecks__2__Name=Transaction Health Check
+      - HealthChecksUI__HealthChecks__2__Uri=http://transaction_api:8080/health-check
+    ports:
+      - "8007:8080"

@@ -1,6 +1,8 @@
 using Customer.Application;
 using Customer.Infrastructure;
 using Customer.Infrastructure.Persistence;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -42,6 +44,9 @@ builder.Services.AddSwaggerGen(s =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHealthChecks()
+    .AddDbContextCheck<CustomerDatabaseContext>();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -79,6 +84,12 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHealthChecks("/health-check", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.Run();
 

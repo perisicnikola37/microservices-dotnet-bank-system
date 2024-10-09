@@ -1,0 +1,8 @@
+:root {
+    --primaryColor: #000767;
+    --secondaryColor: #f4f4f4;
+    --bgMenuActive: #2419ad;
+    --bgButton: #121591;
+    --logoImageUrl: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/.NET_Core_Logo.svg/2048px-.NET_Core_Logo.svg.png');
+    --bgAside: var(--primaryColor);
+}

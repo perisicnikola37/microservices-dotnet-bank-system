@@ -110,7 +110,23 @@ URL: https://www.nuget.org/packages/ApiVersioningLib
 
 <hr />
 
+## Data visualization 
+
+### Elastic search: http://localhost:9200 
+
+### Kibana: http://localhost:5601
+
+<hr />
+
 ## Health checks
 
+### By service
+
 Account service: http://localhost:8001/health-check
+Account service: http://localhost:8002/health-check
+Account service: http://localhost:8003/health-check
+
+### Web status application
+
+URL: http://localhost:8007/healthchecks-ui
 

@@ -83,6 +83,14 @@ services:
     image: docker.elastic.co/kibana/kibana:7.9.2
     networks:
       - microservices-dotnet
+        
+  webstatus:
+    image: ${DOCKER_REGISTRY-}webstatus
+    build:
+      context: .
+      dockerfile: WebApps/WebStatus/Dockerfile
+    networks:
+      - microservices-dotnet  
       
 volumes:
   account_postgres_data:

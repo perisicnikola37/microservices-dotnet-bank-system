@@ -28,7 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Messages", "Buildi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Logging", "BuildingBlocks\Common.Logging\Common.Logging.csproj", "{58B503FC-40A4-4F0B-89BE-041205D94A24}"
 EndProject
+
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OcelotApiGateway", "ApiGateways\OcelotApiGateway\OcelotApiGateway.csproj", "{6EA73824-2255-4D1F-A4E2-1C2CBCC5AB6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebStatus", "WebApps\WebStatus\WebStatus.csproj", "{FE2909E6-0B7E-4257-B9C7-4EE340683497}"
 EndProject
 
 Global
@@ -74,5 +77,9 @@ Global
 		{58B503FC-40A4-4F0B-89BE-041205D94A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58B503FC-40A4-4F0B-89BE-041205D94A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58B503FC-40A4-4F0B-89BE-041205D94A24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE2909E6-0B7E-4257-B9C7-4EE340683497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE2909E6-0B7E-4257-B9C7-4EE340683497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE2909E6-0B7E-4257-B9C7-4EE340683497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE2909E6-0B7E-4257-B9C7-4EE340683497}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

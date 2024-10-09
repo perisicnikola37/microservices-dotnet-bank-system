@@ -4,18 +4,13 @@ using WebStatus.Models;
 
 namespace WebStatus.Controllers;
 
-public class HomeController : Controller
-{
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+public class HomeController(ILogger<HomeController> logger) : Controller
     {
-        _logger = logger;
-    }
+    private readonly ILogger<HomeController> _logger = logger;
 
     public IActionResult Index()
     {
-        return View();
+        return Redirect("/healthchecks-ui");
     }
 
     public IActionResult Privacy()
