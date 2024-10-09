@@ -54,6 +54,7 @@ services:
       <<: *run-migrations
       ASPNETCORE_ENVIRONMENT: Development
       ConnectionStrings__AccountConnectionString: "Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
+      ElasticConfiguration: Uri=http://elasticsearch:9200"
     depends_on:
       - account_database
       - rabbitmq
@@ -136,3 +137,24 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
+        
+  elasticsearch:
+    container_name: elasticsearch
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+  
+  kibana:
+    container_name: kibana
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+    ports:
+      - "5601:5601" 

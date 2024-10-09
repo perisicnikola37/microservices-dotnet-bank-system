@@ -1,11 +1,13 @@
 using Account.Application;
 using Account.Infrastructure;
 using Account.Infrastructure.Persistence;
+using Common.Logging;
 using HealthChecks.UI.Client;
 using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,6 +45,8 @@ builder.Services.AddSwaggerGen(s =>
 builder.Services.AddHealthChecks()
     .AddRabbitMQ(builder.Configuration["EventBusSettings:HostAddress"]!, name: "account-transaction-rabbitmq_bus")
     .AddDbContextCheck<AccountDatabaseContext>();
+
+builder.Host.UseSerilog(SeriLogger.Configure);
 
 builder.Services.AddMassTransit(conf =>
 {

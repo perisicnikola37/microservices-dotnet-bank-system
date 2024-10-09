@@ -23,11 +23,10 @@ namespace Transaction.API.Data
             Transactions = database.GetCollection<Entities.Transaction>(collectionName);
             CreateIndexes();
 
-            // if (configuration.GetValue<bool>("RunMigrations"))
-            // {
-            Console.WriteLine("c1");
+            if (configuration.GetValue<bool>("RunMigrations"))
+            {
                 TransactionDatabaseContextSeed.SeedData(Transactions);
-            // }
+            }
         }
 
         private static bool CollectionExists(IMongoDatabase database, string collectionName)
