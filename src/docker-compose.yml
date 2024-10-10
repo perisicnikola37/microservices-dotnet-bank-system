@@ -1,97 +1,237 @@
+x-run-migrations-env: &run-migrations
+  RunMigrations: true
+
 services:
   account_database:
+    container_name: account_database
     image: postgres
+    environment:
+      POSTGRES_DB: _accountdatabase_gpQcTBtS3NE1S
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: _accountdatabasep_wPRhN1iCfGsb
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - account_postgres_data:/var/lib/postgresql/data/
     networks:
       - microservices-dotnet
-      
+
   customer_database:
+    container_name: customer_database
     image: postgres
+    environment:
+      POSTGRES_DB: _customerdatabase_PORfERJCaF1p
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: _customerdatabasep_4vvFpVXgTJd
+    restart: always
+    ports:
+      - "5434:5432"
+    volumes:
+      - customer_postgres_data:/var/lib/postgresql/data/
     networks:
       - microservices-dotnet
   
   transaction_database:
+    container_name: transaction_database
     image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - microservices-dotnet
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management-alpine
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin@gmail.com
+      RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
+      RABBITMQ_LOG_LEVEL: error
     networks:
       - microservices-dotnet
   
   account_api:
+    container_name: account_api
     image: ${DOCKER_REGISTRY-}accountapi
     build:
       context: .
       dockerfile: Services/Account/Account.API/Dockerfile
+    environment:
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__AccountConnectionString: "Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
+      ElasticConfiguration: "Uri=http://elasticsearch:9200"
+    depends_on:
+      - account_database
+      - rabbitmq
+#      - elasticsearch
+    ports:
+      - "8001:8080"
     networks:
       - microservices-dotnet
-    
+
   customer_api:
+    container_name: customer_api
     image: ${DOCKER_REGISTRY-}customerapi
     build:
       context: .
       dockerfile: Services/Customer/Customer.API/Dockerfile
+    environment:
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+    depends_on:
+      - customer_database
+    ports:
+      - "8002:8080"
     networks:
       - microservices-dotnet
-        
+  
   customer_grpc:
+    container_name: customer_grpc
     image: ${DOCKER_REGISTRY-}customergrpc
     build:
       context: .
       dockerfile: Services/Customer/Customer.GRPC/Dockerfile
-    networks:
-      - microservices-dotnet
-    
-  ocelotapigateway:
-    image: ${DOCKER_REGISTRY-}ocelotapigateway
-    build:
-      context: .
-      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+    environment:
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+    depends_on:
+      - customer_database
+    ports:
+      - "5001:8080"
     networks:
       - microservices-dotnet
   
   transaction_api:
+    container_name: transaction_api
     image: ${DOCKER_REGISTRY-}transactionapi
     build:
       context: .
       dockerfile: Services/Transaction/Transaction.API/Dockerfile
-    networks:
-      - microservices-dotnet
-    
-  rabbitmq:
-    image: rabbitmq:3-management-alpine
-    networks:
-      - microservices-dotnet
-
-  pgadmin:
-    image: dpage/pgadmin4
-    networks:
-      - microservices-dotnet
-      
-  mongo-express:
-    image: mongo-express
+    environment:
+      <<: *run-migrations
+      ASPNETCORE_ENVIRONMENT: Development
+    depends_on:
+      - transaction_database
+      - rabbitmq
+    ports:
+      - "8003:8080"
     networks:
       - microservices-dotnet
   
-  portainer:
-    image: portainer/portainer-ce
-    networks:
-      - microservices-dotnet
-      
+#  ocelotapigateway:
+#    container_name: ocelotapigateway
+#    image: ${DOCKER_REGISTRY-}ocelotapigateway
+#    build:
+#      context: .
+#      dockerfile: ApiGateways/OcelotApiGateway/Dockerfile
+#    environment:
+#      - ASPNETCORE_ENVIRONMENT=Development
+#    depends_on:
+#      - account_api
+#      - customer_api
+#      - transaction_api
+#    ports:
+#      - "8010:8080"
+#    networks:
+#      - microservices-dotnet
+
+#  pgadmin:
+#    container_name: pgadmin
+#    image: dpage/pgadmin4
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+#      PGADMIN_DEFAULT_PASSWORD: _pgadmin_v-r6yVMv5G30V#2
+#    restart: always
+#    ports:
+#      - "5050:80"
+#    volumes:
+#      - pgadmin_data:/root/.pgadmin
+#    networks:
+#      - microservices-dotnet
+#  
+#  mongo-express:
+#    image: mongo-express
+#    environment:
+#      ME_CONFIG_MONGODB_URL: mongodb://transaction_database:27017
+#      ME_CONFIG_BASICAUTH_USERNAME: admin
+#      ME_CONFIG_BASICAUTH_PASSWORD: _transactiondatabase_9G2sTQ*HM5
+#    restart: always
+#    ports:
+#      - "8081:8081"
+#    volumes:
+#      - mongo_data:/data/db
+#    networks:
+#      - microservices-dotnet
+  
+#  portainer:
+#    container_name: portainer
+#    image: portainer/portainer-ce
+#    restart: always
+#    ports:
+#      - "8080:8000"
+#      - "9000:9000"
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - portainer_data:/data
+#    networks:
+#      - microservices-dotnet
+#  
   elasticsearch:
+    container_name: elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch:7.9.2
+    environment:
+      - xpack.monitoring.enabled=true
+      - xpack.watcher.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
     networks:
       - microservices-dotnet
-      
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.9.2
-    networks:
-      - microservices-dotnet
-        
-  webstatus:
-    image: ${DOCKER_REGISTRY-}webstatus
-    build:
-      context: .
-      dockerfile: WebApps/WebStatus/Dockerfile
-    networks:
-      - microservices-dotnet  
-      
+#  
+#  kibana:
+#    container_name: kibana
+#    image: docker.elastic.co/kibana/kibana:7.9.2
+#    environment:
+#      - ELASTICSEARCH_URL=http://elasticsearch:9200
+#    depends_on:
+#      - elasticsearch
+#    ports:
+#      - "5601:5601"
+#    networks:
+#      - microservices-dotnet
+  
+#  webstatus:
+#    container_name: webstatus
+#    image: ${DOCKER_REGISTRY-}webstatus
+#    build:
+#      context: .
+#      dockerfile: WebApps/WebStatus/Dockerfile
+#    environment:
+#      - ASPNETCORE_ENVIRONMENT=Development
+#      - HealthChecksUI__HealthChecks__0__Name=Account Health Check
+#      - HealthChecksUI__HealthChecks__0__Uri=http://account_api:8080/health-check
+#      - HealthChecksUI__HealthChecks__1__Name=Customer Health Check
+#      - HealthChecksUI__HealthChecks__1__Uri=http://customer_api:8080/health-check
+#      - HealthChecksUI__HealthChecks__2__Name=Transaction Health Check
+#      - HealthChecksUI__HealthChecks__2__Uri=http://transaction_api:8080/health-check
+#    ports:
+#      - "8007:8080"
+#    networks:
+#      - microservices-dotnet
+
 volumes:
   account_postgres_data:
   customer_postgres_data:
