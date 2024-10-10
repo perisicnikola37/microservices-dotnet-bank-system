@@ -14,15 +14,15 @@ namespace Account.API.Controllers;
 public class AccountsController(IMediator mediator, IPublishEndpoint publishEndpoint) : ControllerBase
     {
     [HttpPost]
-    [ProducesResponseType(typeof(Guid), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesDefaultResponseType]
     public async Task<ActionResult<Guid>> CreateAccount([FromBody] CreateAccountCommand command)
     {
         var response = await mediator.Send(command); 
         
-        return CreatedAtAction(nameof(CreateAccount), new { id = response.Id }, response); 
+        return CreatedAtAction(nameof(CreateAccount), new { id = response.AccountId }, response); 
     }
     
     [HttpGet("{id}")]

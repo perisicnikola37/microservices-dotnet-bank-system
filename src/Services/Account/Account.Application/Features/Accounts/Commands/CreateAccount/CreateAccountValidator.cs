@@ -8,6 +8,7 @@ public class CreateAccountValidator : AbstractValidator<CreateAccountCommand>
     public CreateAccountValidator()
     {
         RuleFor(x => x.CustomerId)
-            .NotEqual(Guid.Empty).WithMessage(AccountMessages.CustomerRequired);
+            .NotEmpty().WithMessage(AccountMessages.CustomerRequired) 
+            .NotEqual(Guid.Empty).WithMessage(AccountMessages.CustomerRequired); 
     }
     }
