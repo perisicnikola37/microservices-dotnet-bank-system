@@ -1,8 +1,6 @@
 using MediatR;
 
-namespace Account.Application.Features.Accounts.Queries.GetAccount;
-
-public class GetAccountQueryRequest : IRequest<GetAccountResponse>
+namespace Account.Application.Features.Accounts.Queries.GetAccount
     {
-    public Guid AccountId { get; set; }
+    public record GetAccountQueryRequest(Guid AccountId) : IRequest<GetAccountResponse>;
     }

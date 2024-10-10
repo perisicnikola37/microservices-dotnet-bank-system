@@ -27,14 +27,14 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
     
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(GetAccountResponse), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesDefaultResponseType]
     public async Task<ActionResult<GetAccountResponse>> GetById([FromRoute] Guid id)
     {
-        return Ok(await mediator.Send(new GetAccountQueryRequest { AccountId = id }));
+        return Ok(await mediator.Send(new GetAccountQueryRequest(id)));
     }
 
     [HttpPut("{id}/deposit")]

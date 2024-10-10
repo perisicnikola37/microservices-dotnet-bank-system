@@ -7,7 +7,8 @@ public class GetAccountValidator : AbstractValidator<GetAccountQueryRequest>
     {
     public GetAccountValidator()
     {
-        RuleFor(x => x.AccountId)
-            .NotEqual(Guid.Empty).WithMessage(AccountMessages.AccountRequired);
+        RuleFor(request => request.AccountId)
+            .NotEqual(Guid.Empty)
+            .WithMessage(AccountMessages.AccountRequired);
     }
     }
