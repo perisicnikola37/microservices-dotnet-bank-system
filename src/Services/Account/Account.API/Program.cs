@@ -1,3 +1,4 @@
+using Account.API.Middlewares;
 using Account.Application;
 using Account.Infrastructure;
 using Account.Infrastructure.Persistence;
@@ -67,6 +68,8 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
+
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
@@ -92,12 +95,12 @@ using (var scope = app.Services.CreateScope())
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/v{accountApiVersion}/swagger.json", $"Account.API v{accountApiVersion}"));
 }
 
 // app.UseHttpsRedirection();
+
 app.UseRouting();
 
 app.UseAuthorization();
