@@ -10,26 +10,30 @@ namespace Account.Application.Features.Accounts.Commands.DepositAccount
         ILogger<DepositAccountHandler> logger) 
         : IRequestHandler<DepositAccountCommand>
     {
+    private readonly IAccountRepository _accountRepository = accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
+    private readonly ILogger<DepositAccountHandler> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    
     public async Task Handle(DepositAccountCommand request, CancellationToken cancellationToken)
         {
-            var accountUpdate = await accountRepository.GetByIdAsync(request.AccountId);
-            if (accountUpdate is null)
+            var account = await _accountRepository.GetByIdAsync(request.AccountId);
+            
+            if (account is null)
             {
-                logger.LogError($"Account not found: {request.AccountId}");
+                _logger.LogError($"Account not found: {request.AccountId}");
                 throw new NotFoundException(nameof(Domain.Entities.Account), request.AccountId);
             }
 
-            if (accountUpdate.CustomerId != request.CustomerId)
+            if (account.CustomerId != request.CustomerId)
             {
-                logger.LogWarning($"Unauthorized access attempt by CustomerId: {request.CustomerId} on AccountId: {request.AccountId}");
-                throw new UnauthorizedAccessException();
+                _logger.LogWarning($"Unauthorized access attempt by CustomerId: {request.CustomerId} on AccountId: {request.AccountId}");
+                throw new UnauthorizedAccessException("You do not have access to this account.");
             }
 
             // Perform deposit
-            accountUpdate.Balance += request.Amount;
-
-            await accountRepository.UpdateAsync(accountUpdate);
-            logger.LogInformation($"Deposit successful for AccountId: {request.AccountId}, New Balance: {accountUpdate.Balance}");
+            account.Balance += request.Amount;
+            await _accountRepository.UpdateAsync(account);
+            
+            _logger.LogInformation($"Deposit successful for AccountId: {request.AccountId}, New Balance: {account.Balance}");
         }
     }
 }

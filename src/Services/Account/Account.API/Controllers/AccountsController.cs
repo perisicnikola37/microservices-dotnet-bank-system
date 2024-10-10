@@ -32,23 +32,23 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult<GetAccountResponse>> GetById([FromRoute] Guid id)
+    public async Task<ActionResult<GetAccountResponse>> GetAccountById([FromRoute] Guid id)
     {
         return Ok(await mediator.Send(new GetAccountQueryRequest(id)));
     }
 
     [HttpPut("{id}/deposit")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Deposit([FromRoute] Guid id, [FromBody] DepositAccountCommand command)
+    public async Task<ActionResult> DepositAccount([FromRoute] Guid id, [FromBody] DepositAccountCommand command)
     {
         command.SetAccountId(id);
-        await mediator.Send(command);
 
+        await mediator.Send(command);
         await publishEndpoint.Publish(new AccountTransactionEvent
         {
             CustomerId = command.CustomerId,
@@ -57,17 +57,17 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
             Type = TransactionType.Adding
         });
 
-        return Ok();
+        return NoContent();
     }
     
     [HttpPost("{id}/withdraw")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesDefaultResponseType]
-    public async Task<ActionResult> Withdraw([FromRoute] Guid id, [FromBody] WithdrawAccountCommand command)
+    public async Task<ActionResult> WithdrawFromAccount([FromRoute] Guid id, [FromBody] WithdrawAccountCommand command)
     {
         command.SetAccountId(id);
         await mediator.Send(command);
@@ -80,6 +80,6 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
             Type = TransactionType.Withdrawing
         });
         
-        return Ok();
+        return NoContent();
     }
     }
