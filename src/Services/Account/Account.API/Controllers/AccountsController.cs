@@ -4,13 +4,14 @@ using Account.Application.Features.Accounts.Commands.WithdrawAccount;
 using Account.Application.Features.Accounts.Queries.GetAccount;
 using EventBus.Messages.Events;
 using MassTransit;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Account.API.Controllers;
 
 [Route("api/accounts")]
 [ApiController]
-public class AccountsController(MediatR.IMediator mediator, IPublishEndpoint publishEndpoint) : ControllerBase
+public class AccountsController(IMediator mediator, IPublishEndpoint publishEndpoint) : ControllerBase
     {
     [HttpPost]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]

@@ -1,5 +1,4 @@
 using Account.Application.Contracts.Persistence;
-using Account.Application.Features.Accounts.Commands.CreateAccount;
 using Account.Application.Mappings;
 using Account.Infrastructure.Persistence;
 using Account.Infrastructure.Repositories;

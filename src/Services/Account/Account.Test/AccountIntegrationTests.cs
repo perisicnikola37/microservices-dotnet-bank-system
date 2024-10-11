@@ -1,10 +1,10 @@
 using Account.API.Controllers;
 using Account.Application.Features.Accounts.Commands.CreateAccount;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Account.Infrastructure.Persistence;
 using MassTransit;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Account.Test
 {

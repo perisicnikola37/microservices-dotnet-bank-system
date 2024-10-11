@@ -1,7 +1,7 @@
-using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Customer.Application.Contracts.Persistance;
 using Customer.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Customer.Infrastructure.Repositories
     {

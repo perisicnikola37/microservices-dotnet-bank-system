@@ -1,4 +1,3 @@
-using EventBus.Messages.Events;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 

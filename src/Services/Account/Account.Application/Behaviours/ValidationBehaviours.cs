@@ -1,7 +1,7 @@
-namespace Account.Application.Behaviours;
-
 using FluentValidation;
 using MediatR;
+
+namespace Account.Application.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse>(IEnumerable<IValidator<TRequest>> validators)
     : IPipelineBehavior<TRequest, TResponse>
