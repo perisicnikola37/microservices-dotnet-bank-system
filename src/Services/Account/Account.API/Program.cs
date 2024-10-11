@@ -1,8 +1,10 @@
+using Account.API.GrpcServices;
 using Account.API.Middlewares;
 using Account.Application;
 using Account.Infrastructure;
 using Account.Infrastructure.Persistence;
 using Common.Logging;
+using Customer.GRPC;
 using HealthChecks.UI.Client;
 using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -11,6 +13,10 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddGrpcClient<CustomerProtoService.CustomerProtoServiceClient>(c =>
+    c.Address = new Uri(builder.Configuration["GrpcSettings:CustomerUrl"]!));
+builder.Services.AddScoped<CustomerGrpcService>();
 
 builder.Services.AddApplicationServices();
 InfrastructureServiceRegistration.AddInfrastructureServices(builder.Services, builder.Configuration);
@@ -27,7 +33,7 @@ builder.Services.AddSwaggerGen(s =>
     s.SwaggerDoc($"v{accountApiVersion}", new OpenApiInfo
     {
         Title = "Account service",
-        Version = $"v{accountApiVersion}", 
+        Version = $"v{accountApiVersion}",
         Description = "Service for managing customer accounts.",
         Contact = new OpenApiContact
         {
@@ -51,10 +57,7 @@ builder.Host.UseSerilog(SeriLogger.Configure);
 
 builder.Services.AddMassTransit(conf =>
 {
-    conf.UsingRabbitMq((ctx, cfg) =>
-    {
-        cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]!);
-    });
+    conf.UsingRabbitMq((ctx, cfg) => { cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]!); });
 });
 
 builder.Services.Configure<MassTransitHostOptions>(conf =>
@@ -75,28 +78,27 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<AccountDatabaseContext>();
     var logger = services.GetRequiredService<ILogger<AccountDatabaseContextSeed>>();
-    var configuration = services.GetRequiredService<IConfiguration>(); 
+    var configuration = services.GetRequiredService<IConfiguration>();
 
     try
     {
         await context.Database.MigrateAsync();
-        
+
         if (configuration.GetValue<bool>("RunMigrations"))
-        {
             // Seed the "Account API" database
             await AccountDatabaseContextSeed.SeedDataAsync(context, logger);
-        }
     }
     catch (Exception ex)
     {
-        logger.LogError(ex, $"An error occurred while migrating or seeding the \"Account.API\" database.");
+        logger.LogError(ex, "An error occurred while migrating or seeding the \"Account.API\" database.");
     }
 }
 
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint($"/swagger/v{accountApiVersion}/swagger.json", $"Account.API v{accountApiVersion}"));
+    app.UseSwaggerUI(c =>
+        c.SwaggerEndpoint($"/swagger/v{accountApiVersion}/swagger.json", $"Account.API v{accountApiVersion}"));
 }
 
 // app.UseHttpsRedirection();
@@ -125,4 +127,3 @@ app.MapHealthChecks("/health-check", new HealthCheckOptions
 });
 
 app.Run();
-

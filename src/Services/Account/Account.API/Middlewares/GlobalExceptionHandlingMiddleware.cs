@@ -12,7 +12,7 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<Glo
         {
             await next(context);
         }
-        catch (NotFoundException ex)
+        catch (EntityNotFoundException ex)
         {
             await HandleExceptionAsync(context, HttpStatusCode.NotFound, ex);
         }

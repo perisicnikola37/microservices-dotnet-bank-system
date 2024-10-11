@@ -1,3 +1,5 @@
+using Account.API.GrpcServices;
+using Account.Application.Contracts.Messages;
 using Account.Application.Features.Accounts.Commands.CreateAccount;
 using Account.Application.Features.Accounts.Commands.DepositAccount;
 using Account.Application.Features.Accounts.Commands.WithdrawAccount;
@@ -11,7 +13,10 @@ namespace Account.API.Controllers;
 
 [Route("api/accounts")]
 [ApiController]
-public class AccountsController(IMediator mediator, IPublishEndpoint publishEndpoint) : ControllerBase
+public class AccountsController(
+    IMediator mediator,
+    IPublishEndpoint publishEndpoint,
+    CustomerGrpcService customerGrpcService) : ControllerBase
     {
     [HttpPost]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
@@ -20,9 +25,12 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
     [ProducesDefaultResponseType]
     public async Task<ActionResult<Guid>> CreateAccount([FromBody] CreateAccountCommand command)
     {
-        var response = await mediator.Send(command); 
-        
-        return CreatedAtAction(nameof(CreateAccount), new { id = response.AccountId }, response); 
+        var customerExists = await customerGrpcService.CheckCustomer(command.CustomerId);
+        if (!customerExists)
+            return NotFound(AccountMessages.CustomerNotFound);
+        var response = await mediator.Send(command);
+
+        return CreatedAtAction(nameof(CreateAccount), new { id = response.AccountId }, response);
     }
 
     [HttpGet("{id}")]
@@ -52,7 +60,7 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
         await publishEndpoint.Publish(new AccountTransactionEvent
         {
             CustomerId = command.CustomerId,
-            AccountId = id, 
+            AccountId = id,
             Amount = command.Amount,
             Type = TransactionType.Adding
         });
@@ -71,7 +79,7 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
     {
         command.SetAccountId(id);
         await mediator.Send(command);
-        
+
         await publishEndpoint.Publish(new AccountTransactionEvent
         {
             AccountId = command.AccountId,
@@ -79,7 +87,7 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
             Amount = command.Amount,
             Type = TransactionType.Withdrawing
         });
-        
+
         return NoContent();
     }
     }
