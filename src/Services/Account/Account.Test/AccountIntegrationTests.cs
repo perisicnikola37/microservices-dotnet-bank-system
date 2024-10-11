@@ -10,10 +10,10 @@ namespace Account.Test
 {
     public class AccountIntegrationTests : BaseTest
     {
-        private readonly AccountDatabaseContext _context;
-        private readonly AccountsController _controller;
+    private readonly AccountDatabaseContext _context;
+    private readonly AccountsController _controller;
 
-        public AccountIntegrationTests() 
+    public AccountIntegrationTests() 
         {
             var serviceProvider = TestDatabaseFactory.CreateServiceProvider();
 
@@ -45,5 +45,5 @@ namespace Account.Test
             Assert.NotNull(account);
             Assert.Equal(customerId, account.CustomerId);
         }
-    }
+        }
 }

@@ -11,7 +11,6 @@ public class TransactionService(
     IMapper mapper)
     : ITransactionService
     {
-
     public async Task<List<TransactionDto>> GetByAccountId(Guid accountId)
     {
         var transactions = await transactionRepository.GetByAccountId(accountId);

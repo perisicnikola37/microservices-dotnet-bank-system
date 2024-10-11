@@ -10,7 +10,6 @@ namespace Customer.Application.Features.Commands.CreateCustomer
         IMapper mapper)
         : IRequestHandler<CreateCustomerCommand, CustomerDto>
         {
-
         public async Task<CustomerDto> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
             var customerEntity = mapper.Map<Domain.Entities.Customer>(request);
@@ -18,5 +17,5 @@ namespace Customer.Application.Features.Commands.CreateCustomer
             
             return mapper.Map<CustomerDto>(newCustomer)!;
         }
-    }
+        }
 }

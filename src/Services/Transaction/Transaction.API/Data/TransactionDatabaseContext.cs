@@ -5,7 +5,7 @@ namespace Transaction.API.Data
 {
     public class TransactionDatabaseContext : ITransactionContext
     {
-        public TransactionDatabaseContext(IConfiguration configuration)
+    public TransactionDatabaseContext(IConfiguration configuration)
         {
             var client = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
             var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
@@ -29,6 +29,8 @@ namespace Transaction.API.Data
             }
         }
 
+        public IMongoCollection<Entities.Transaction> Transactions { get; }
+
         private static bool CollectionExists(IMongoDatabase database, string collectionName)
         {
             var collections = database.ListCollectionNames().ToList();
@@ -45,7 +47,5 @@ namespace Transaction.API.Data
             var createdDateIndex = Builders<Entities.Transaction>.IndexKeys.Ascending(x => x.CreatedDate);
             Transactions.Indexes.CreateOne(new CreateIndexModel<Entities.Transaction>(createdDateIndex));
         }
-
-        public IMongoCollection<Entities.Transaction> Transactions { get; }
-    }
+        }
 }

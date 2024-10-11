@@ -20,7 +20,7 @@ public class RepositoryBase<T>(CustomerDatabaseContext dbContext) : IRepositoryB
     {
         return await _dbContext.Set<T>().FindAsync(id);
     }
-     
+
     public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
     {
         return await _dbContext.Set<T>().Where(predicate).FirstOrDefaultAsync();

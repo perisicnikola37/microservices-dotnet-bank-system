@@ -13,11 +13,11 @@ namespace Account.Test
 {
     public class AccountsControllerTests
     {
-        private readonly Mock<IMediator> _mediatorMock;
-        private readonly Mock<IPublishEndpoint> _publishEndpointMock;
-        private readonly AccountsController _controller;
+    private readonly AccountsController _controller;
+    private readonly Mock<IMediator> _mediatorMock;
+    private readonly Mock<IPublishEndpoint> _publishEndpointMock;
 
-        public AccountsControllerTests()
+    public AccountsControllerTests()
         {
             _mediatorMock = new Mock<IMediator>();
             _publishEndpointMock = new Mock<IPublishEndpoint>();
@@ -112,5 +112,5 @@ namespace Account.Test
             Assert.IsType<NoContentResult>(result);
             _publishEndpointMock.Verify(m => m.Publish(It.IsAny<AccountTransactionEvent>(), It.IsAny<CancellationToken>()), Times.Once);
         }
-    }
+        }
 }

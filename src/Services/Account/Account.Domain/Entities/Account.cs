@@ -14,7 +14,7 @@ public class Account : EntityBase
         CustomerId = customerId;
         Balance = balance;
     }
-    
+
     public Guid CustomerId { get; set; }
     public decimal Balance { get; set; }
     }

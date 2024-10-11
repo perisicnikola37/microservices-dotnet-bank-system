@@ -9,7 +9,7 @@ namespace Account.Application.Features.Accounts.Commands.WithdrawAccount
         : IRequestHandler<WithdrawAccountCommand>
         {
         private readonly IAccountRepository _accountRepository = accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
-        
+
         public async Task Handle(WithdrawAccountCommand request, CancellationToken cancellationToken)
         {
             var account = await _accountRepository.GetByIdAsync(request.AccountId);
@@ -38,5 +38,5 @@ namespace Account.Application.Features.Accounts.Commands.WithdrawAccount
     
             logger.LogInformation($"Withdrawal successful for AccountId: {request.AccountId}. New Balance: {account.Balance}");
         }
-    }
+        }
 }

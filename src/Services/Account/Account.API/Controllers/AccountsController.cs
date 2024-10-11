@@ -24,7 +24,7 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
         
         return CreatedAtAction(nameof(CreateAccount), new { id = response.AccountId }, response); 
     }
-    
+
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(GetAccountResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -59,7 +59,7 @@ public class AccountsController(IMediator mediator, IPublishEndpoint publishEndp
 
         return NoContent();
     }
-    
+
     [HttpPost("{id}/withdraw")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]

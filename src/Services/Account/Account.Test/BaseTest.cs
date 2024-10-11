@@ -5,7 +5,7 @@ namespace Account.Test;
 
 public abstract class BaseTest : IDisposable
     {
-    protected const string ApiNamespace = "Account.API";  
+    protected const string ApiNamespace = "Account.API";
     protected const string ApplicationNamespace = "Account.Application";
     protected const string DomainNamespace = "Account.Domain";
     protected const string InfrastructureNamespace = "Account.Infrastructure";
@@ -19,6 +19,13 @@ public abstract class BaseTest : IDisposable
         Context = scope.ServiceProvider.GetRequiredService<AccountDatabaseContext>();
     }
 
+    public void Dispose()
+    {
+        // Clean up the in-memory database after the tests
+        Context.Database.EnsureDeleted();
+        Context.Dispose();
+    }
+
     protected static Assembly[] LoadAssemblies()
     {
         return
@@ -28,12 +35,5 @@ public abstract class BaseTest : IDisposable
             Assembly.Load(DomainNamespace),
             Assembly.Load(InfrastructureNamespace)
         ];
-    }
-
-    public void Dispose()
-    {
-        // Clean up the in-memory database after the tests
-        Context.Database.EnsureDeleted();
-        Context.Dispose();
     }
     }

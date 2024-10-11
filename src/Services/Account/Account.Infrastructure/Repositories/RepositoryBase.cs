@@ -9,9 +9,9 @@ namespace Account.Infrastructure.Repositories;
  public class RepositoryBase<T>(AccountDatabaseContext dbContext) : IRepositoryBase<T>
      where T : EntityBase
      {
-        private readonly AccountDatabaseContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+     private readonly AccountDatabaseContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+     public async Task<IReadOnlyList<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();
         }
@@ -20,7 +20,7 @@ namespace Account.Infrastructure.Repositories;
         {
             return await _dbContext.Set<T>().FindAsync(id);
         }
-     
+
         public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
         {
             return await _dbContext.Set<T>().Where(predicate).FirstOrDefaultAsync();
@@ -45,5 +45,5 @@ namespace Account.Infrastructure.Repositories;
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
         }
-    }
+        }
 

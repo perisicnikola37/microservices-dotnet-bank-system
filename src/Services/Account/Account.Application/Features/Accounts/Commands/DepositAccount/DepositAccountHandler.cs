@@ -12,7 +12,7 @@ namespace Account.Application.Features.Accounts.Commands.DepositAccount
     {
     private readonly IAccountRepository _accountRepository = accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
     private readonly ILogger<DepositAccountHandler> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    
+
     public async Task Handle(DepositAccountCommand request, CancellationToken cancellationToken)
         {
             var account = await _accountRepository.GetByIdAsync(request.AccountId);
@@ -35,5 +35,5 @@ namespace Account.Application.Features.Accounts.Commands.DepositAccount
             
             _logger.LogInformation($"Deposit successful for AccountId: {request.AccountId}, New Balance: {account.Balance}");
         }
-    }
+        }
 }

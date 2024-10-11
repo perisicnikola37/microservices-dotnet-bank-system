@@ -6,7 +6,7 @@ namespace Account.Infrastructure.Persistence;
 public class AccountDatabaseContext(DbContextOptions<AccountDatabaseContext> options) : DbContext(options)
     {
     public DbSet<Domain.Entities.Account> Accounts { get; set; }
-    
+
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
     {
         foreach (var entry in ChangeTracker.Entries<EntityBase>())

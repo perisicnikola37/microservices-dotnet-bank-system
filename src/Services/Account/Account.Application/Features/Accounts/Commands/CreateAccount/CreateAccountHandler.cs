@@ -12,8 +12,8 @@ namespace Account.Application.Features.Accounts.Commands.CreateAccount
         : IRequestHandler<CreateAccountCommand, CreateAccountResponse>
         {
         private readonly IAccountRepository _accountRepository = accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
-        private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         private readonly ILogger<CreateAccountHandler> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        private readonly IMapper _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
 
         public async Task<CreateAccountResponse> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
@@ -33,5 +33,5 @@ namespace Account.Application.Features.Accounts.Commands.CreateAccount
                 throw; 
             }
         }
-    }
+        }
 }
