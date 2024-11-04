@@ -1,9 +1,11 @@
 using Account.API.GrpcServices;
+using Account.Application.Contracts.DTO.Response;
 using Account.Application.Contracts.Messages;
 using Account.Application.Features.Accounts.Commands.CreateAccount;
 using Account.Application.Features.Accounts.Commands.DepositAccount;
 using Account.Application.Features.Accounts.Commands.WithdrawAccount;
 using Account.Application.Features.Accounts.Queries.GetAccount;
+using Account.Application.Features.Accounts.Queries.GetAuthenticatedCustomerAccounts;
 using EventBus.Messages.Events;
 using MassTransit;
 using MediatR;
@@ -31,6 +33,23 @@ public class AccountsController(
         var response = await mediator.Send(command);
 
         return CreatedAtAction(nameof(CreateAccount), new { id = response.AccountId }, response);
+    }
+
+    [HttpGet("/api/user/accounts")]
+    [ProducesResponseType(typeof(GetAccountResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesDefaultResponseType]
+    public async Task<ActionResult<List<AccountDto>>> GetAuthenticatedUserAccounts(
+        [FromQuery] Guid customerId)
+    {
+        var customerExists = await customerGrpcService.CheckCustomer(customerId);
+        if (!customerExists)
+            return NotFound(AccountMessages.CustomerNotFound);
+
+        return Ok(await mediator.Send(new GetAuthenticatedCustomerAccountsQueryRequest(customerId)));
     }
 
     [HttpGet("{id}")]
