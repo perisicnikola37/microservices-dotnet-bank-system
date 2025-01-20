@@ -37,7 +37,7 @@ public class ApiVersioning
     /// <param name="serviceName">The name of the service.</param>
     /// <returns>The version of the service.</returns>
     /// <exception cref="ServiceVersionNotFoundException">Thrown when the service version is not found.</exception>
-    public string GetServiceVersion(string serviceName)
+    public string GetVersion(string serviceName)
     {
         if (!_serviceVersions.TryGetValue(serviceName, out var version))
             throw new ServiceVersionNotFoundException(serviceName);
@@ -48,7 +48,7 @@ public class ApiVersioning
     ///     Retrieves the version of all services.
     /// </summary>
     /// <returns>All services versions.</returns>
-    public Dictionary<string, string> GetAllServiceVersions()
+    public Dictionary<string, string> GetAll()
     {
         return new Dictionary<string, string>(_serviceVersions);
     }

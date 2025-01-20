@@ -1,4 +1,4 @@
-# Security Policy
+# Security Policy of [ApiVersioning Lib](https://www.nuget.org/packages/ApiVersioningLib)
 
 ## Supported Versions
 
@@ -7,7 +7,21 @@ currently being supported with security updates.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.1.0   | :white_check_mark: |
+| `1.1.2`   | :white_check_mark: |
+| `1.1.1`   | :white_check_mark: |
+| `1.1.0`   | :white_check_mark: |
+| `1.0.1`   | :white_check_mark: |
+| `1.0.0`   | :white_check_mark: |
+
+## Change Log
+
+### `v1.1.2`
+
+Renamed methods from:
+- "`GetServiceVersion`" to "`GetVersion`"
+- "`GetAllServiceVersions`" to "`GetAll`"
+
+Update `README.md` file.
 
 ## Reporting a Vulnerability
 
