@@ -1,4 +1,4 @@
-# ApiVersioningLib v1.1.2
+# ApiVersioningLib v1.1.3
 
 **ApiVersioningLib** is a library designed to simplify API versioning in your .NET project.
 
