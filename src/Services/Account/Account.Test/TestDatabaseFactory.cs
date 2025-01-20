@@ -1,3 +1,4 @@
+using Account.API.GrpcServices;
 using Account.Application.Contracts.Persistence;
 using Account.Application.Mappings;
 using Account.Infrastructure.Persistence;
@@ -16,18 +17,13 @@ public class TestDatabaseFactory
             .AddDbContext<AccountDatabaseContext>(options =>
                 options.UseInMemoryDatabase("TestDatabase"))
             .AddScoped<IAccountRepository, AccountRepository>()
-            .AddMediatR(cfg => 
+            .AddScoped<CustomerGrpcService>()
+            .AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssemblies(
                     Assembly.Load("Account.Application")
                 ))
             .AddAutoMapper(typeof(MappingProfile))
-            .AddMassTransit(x =>
-            {
-                x.UsingInMemory((context, cfg) =>
-                {
-                    cfg.ConfigureEndpoints(context);
-                });
-            })
+            .AddMassTransit(x => { x.UsingInMemory((context, cfg) => { cfg.ConfigureEndpoints(context); }); })
             .AddLogging()
             .BuildServiceProvider();
 
