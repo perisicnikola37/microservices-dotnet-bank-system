@@ -88,5 +88,4 @@ StyleCopCache.cache
 .idea/
 
 # Web config
-appsettings.json
 appsettings.Development.json
