@@ -25,12 +25,11 @@ builder.Services.AddSwaggerGen(s =>
     s.SwaggerDoc($"v{customerApiVersion}", new OpenApiInfo
     {
         Title = "Customer service",
-        Version = $"v{customerApiVersion}", 
+        Version = $"v{customerApiVersion}",
         Description = "Service for managing customers.",
         Contact = new OpenApiContact
         {
             Name = "Nikola Perišić",
-            Email = "nikola.perisic@vegait.rs",
             Url = new Uri("https://github.com/perisicnikola37")
         },
         License = new OpenApiLicense
@@ -54,12 +53,12 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<CustomerDatabaseContext>();
     var logger = services.GetRequiredService<ILogger<CustomerDatabaseContextSeed>>();
-    var configuration = services.GetRequiredService<IConfiguration>(); 
-    
+    var configuration = services.GetRequiredService<IConfiguration>();
+
     try
     {
         await context.Database.MigrateAsync();
-        
+
         if (configuration.GetValue<bool>("RunMigrations"))
         {
             // Seed the "Customer API" database

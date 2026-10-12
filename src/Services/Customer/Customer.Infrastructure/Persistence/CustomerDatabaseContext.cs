@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Customer.Infrastructure.Persistence;
 
 public class CustomerDatabaseContext(DbContextOptions<CustomerDatabaseContext> options) : DbContext(options)
-    {
+{
     public DbSet<Domain.Entities.Customer> Customers { get; set; }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
@@ -23,4 +23,4 @@ public class CustomerDatabaseContext(DbContextOptions<CustomerDatabaseContext> o
         }
         return base.SaveChangesAsync(cancellationToken);
     }
-    }
+}

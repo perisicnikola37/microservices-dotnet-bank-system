@@ -2,9 +2,9 @@ using Customer.Application.Constants.Messages;
 using FluentValidation;
 
 namespace Customer.Application.Features.Commands.CreateCustomer
-    {
+{
     public class CreateCustomerValidator : AbstractValidator<CreateCustomerCommand>
-        {
+    {
         public CreateCustomerValidator()
         {
             RuleFor(x => x.Email)
@@ -22,5 +22,5 @@ namespace Customer.Application.Features.Commands.CreateCustomer
                 .NotNull().WithMessage(CustomerMessage.LastNameRequired)
                 .MaximumLength(128).WithMessage(CustomerMessage.LastNameExceeded);
         }
-        }
     }
+}

@@ -5,7 +5,7 @@ using WebStatus.Models;
 namespace WebStatus.Controllers;
 
 public class HomeController(ILogger<HomeController> logger) : Controller
-    {
+{
     private readonly ILogger<HomeController> _logger = logger;
 
     public IActionResult Index()
@@ -23,4 +23,4 @@ public class HomeController(ILogger<HomeController> logger) : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-    }
+}

@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Account.Infrastructure;
 
 public abstract class InfrastructureServiceRegistration
-    {
+{
     public static void AddInfrastructureServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AccountDatabaseContext>(options =>
@@ -17,4 +17,4 @@ public abstract class InfrastructureServiceRegistration
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         services.AddScoped<IAccountRepository, AccountRepository>();
     }
-    }
+}

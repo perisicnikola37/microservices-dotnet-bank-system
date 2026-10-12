@@ -1,11 +1,11 @@
-﻿using ApiVersioningLib.Exceptions;
+using ApiVersioningLib.Exceptions;
 using ApiVersioningLib.Helpers;
 using ApiVersioningLib.Messages;
 
 namespace ApiVersioningLib;
 
 public class ApiVersioning
-    {
+{
     private readonly Dictionary<string, string> _serviceVersions = new();
 
     /// <summary>
@@ -52,4 +52,4 @@ public class ApiVersioning
     {
         return new Dictionary<string, string>(_serviceVersions);
     }
-    }
+}

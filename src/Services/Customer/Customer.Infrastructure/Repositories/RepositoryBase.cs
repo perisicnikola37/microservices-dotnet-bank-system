@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using Customer.Application.Contracts.Persistance;
+using Customer.Application.Contracts.Persistence;
 using Customer.Domain.Common;
 using Customer.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ namespace Customer.Infrastructure.Repositories;
 
 public class RepositoryBase<T>(CustomerDatabaseContext dbContext) : IRepositoryBase<T>
     where T : EntityBase
-    {
+{
     private readonly CustomerDatabaseContext _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
     public async Task<IReadOnlyList<T>> GetAllAsync()
@@ -30,7 +30,7 @@ public class RepositoryBase<T>(CustomerDatabaseContext dbContext) : IRepositoryB
     {
         _dbContext.Set<T>().Add(entity);
         await _dbContext.SaveChangesAsync();
-            
+
         return entity;
     }
 
@@ -45,4 +45,4 @@ public class RepositoryBase<T>(CustomerDatabaseContext dbContext) : IRepositoryB
         _dbContext.Set<T>().Remove(entity);
         await _dbContext.SaveChangesAsync();
     }
-    }
+}

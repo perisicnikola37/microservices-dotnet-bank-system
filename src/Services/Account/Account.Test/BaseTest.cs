@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Account.Test;
 
 public abstract class BaseTest : IDisposable
-    {
+{
     protected const string ApiNamespace = "Account.API";
     protected const string ApplicationNamespace = "Account.Application";
     protected const string DomainNamespace = "Account.Domain";
@@ -36,4 +36,4 @@ public abstract class BaseTest : IDisposable
             Assembly.Load(InfrastructureNamespace)
         ];
     }
-    }
+}

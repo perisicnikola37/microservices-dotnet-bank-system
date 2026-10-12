@@ -3,9 +3,9 @@ using EventBus.Messages.Events;
 using Transaction.API.Data.DTOs.Responses;
 
 namespace Transaction.API.Mappings
-    {
+{
     public class MappingProfile : Profile
-        {
+    {
         public MappingProfile()
         {
             CreateMap<AccountTransactionEvent, Entities.Transaction>()
@@ -24,5 +24,5 @@ namespace Transaction.API.Mappings
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(src => src.CreatedDate));
         }
-        }
     }
+}

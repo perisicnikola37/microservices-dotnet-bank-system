@@ -1,4 +1,4 @@
-using Customer.Application.Contracts.Persistance;
+using Customer.Application.Contracts.Persistence;
 using Customer.Infrastructure.Persistence;
 using Customer.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Customer.Infrastructure;
 
 public abstract class InfrastructureServiceRegistration
-    {
+{
     public static void AddInfrastructureServices(IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<CustomerDatabaseContext>(options =>
@@ -17,4 +17,4 @@ public abstract class InfrastructureServiceRegistration
         services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
         services.AddScoped<ICustomerRepository, CustomerRepository>();
     }
-    }
+}

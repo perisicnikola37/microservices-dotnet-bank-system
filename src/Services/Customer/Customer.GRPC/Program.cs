@@ -18,12 +18,12 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     var context = services.GetRequiredService<CustomerDatabaseContext>();
     var logger = services.GetRequiredService<ILogger<CustomerDatabaseContextSeed>>();
-    var configuration = services.GetRequiredService<IConfiguration>(); 
+    var configuration = services.GetRequiredService<IConfiguration>();
 
     try
     {
         await context.Database.MigrateAsync();
-        
+
         if (configuration.GetValue<bool>("RunMigrations"))
         {
             // Seed the "Customer API" database

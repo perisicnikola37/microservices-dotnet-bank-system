@@ -11,7 +11,7 @@ public class GetAccountQueryHandler(
     IMapper mapper,
     ILogger<GetAccountQueryHandler> logger)
     : IRequestHandler<GetAccountQueryRequest, GetAccountResponse>
-    {
+{
     private readonly IAccountRepository _accountRepository =
         accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
 
@@ -35,4 +35,4 @@ public class GetAccountQueryHandler(
 
         return _mapper.Map<GetAccountResponse>(account);
     }
-    }
+}

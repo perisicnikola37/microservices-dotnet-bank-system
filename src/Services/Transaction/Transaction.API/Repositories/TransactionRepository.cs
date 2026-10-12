@@ -7,7 +7,7 @@ using Transaction.API.Repositories.Interfaces;
 namespace Transaction.API.Repositories;
 
 public class TransactionRepository(ITransactionContext transactionContext) : ITransactionRepository
-    {
+{
     public async Task Add(Entities.Transaction transaction)
     {
         await transactionContext.Transactions.InsertOneAsync(transaction);
@@ -35,4 +35,4 @@ public class TransactionRepository(ITransactionContext transactionContext) : ITr
             .Find(combinedFilter)
             .ToListAsync();
     }
-    }
+}

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 namespace ApiVersioningLib.Helpers;
 
 public static class Utils
-    {
+{
     /// <summary>
     ///     Validates the version string using semantic versioning pattern.
     /// </summary>
@@ -14,4 +14,4 @@ public static class Utils
         const string versionPattern = @"^\d+\.\d+\.\d+$"; // Regex for semantic versioning (e.g., 1.2.1)
         return Regex.IsMatch(version, versionPattern);
     }
-    }
+}

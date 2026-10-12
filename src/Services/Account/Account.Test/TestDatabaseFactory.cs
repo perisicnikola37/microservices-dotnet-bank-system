@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Account.Test;
 
 public class TestDatabaseFactory
-    {
+{
     public static ServiceProvider CreateServiceProvider()
     {
         var serviceProvider = new ServiceCollection()
@@ -29,4 +29,4 @@ public class TestDatabaseFactory
 
         return serviceProvider;
     }
-    }
+}
