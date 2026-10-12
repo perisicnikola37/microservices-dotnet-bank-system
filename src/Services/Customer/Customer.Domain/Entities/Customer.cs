@@ -1,9 +1,9 @@
 using Customer.Domain.Common;
 
 namespace Customer.Domain.Entities
-    {
+{
     public class Customer : EntityBase
-        {
+    {
         public Customer()
         {
 
@@ -19,5 +19,5 @@ namespace Customer.Domain.Entities
         public string Email { get; set; } = null!;
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
-        }
     }
+}

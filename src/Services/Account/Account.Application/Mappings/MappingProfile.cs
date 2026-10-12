@@ -6,7 +6,7 @@ using AutoMapper;
 namespace Account.Application.Mappings;
 
 public class MappingProfile : Profile
-    {
+{
     public MappingProfile()
     {
         CreateMap<CreateAccountCommand, Domain.Entities.Account>()
@@ -22,4 +22,4 @@ public class MappingProfile : Profile
 
         CreateMap<Domain.Entities.Account, AccountDto>();
     }
-    }
+}

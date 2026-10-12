@@ -3,7 +3,7 @@ using MongoDB.Driver;
 namespace Transaction.API.Filters;
 
 public class TransactionFilterBuilder
-    {
+{
     private readonly FilterDefinitionBuilder<Entities.Transaction> _filterBuilder = Builders<Entities.Transaction>.Filter;
     private readonly List<FilterDefinition<Entities.Transaction>> _filters = [];
 
@@ -38,4 +38,4 @@ public class TransactionFilterBuilder
     {
         return _filters.Count > 0 ? _filterBuilder.And(_filters) : _filterBuilder.Empty;
     }
-    }
+}

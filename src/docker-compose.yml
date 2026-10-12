@@ -6,9 +6,9 @@ services:
     container_name: account_database
     image: postgres
     environment:
-      POSTGRES_DB: _accountdatabase_gpQcTBtS3NE1S
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: _accountdatabasep_wPRhN1iCfGsb
+      POSTGRES_DB: ${ACCOUNT_DB_NAME}
+      POSTGRES_USER: ${ACCOUNT_DB_USER}
+      POSTGRES_PASSWORD: ${ACCOUNT_DB_PASSWORD}
     restart: always
     ports:
       - "5433:5432"
@@ -21,9 +21,9 @@ services:
     container_name: customer_database
     image: postgres
     environment:
-      POSTGRES_DB: _customerdatabase_PORfERJCaF1p
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: _customerdatabasep_4vvFpVXgTJd
+      POSTGRES_DB: ${CUSTOMER_DB_NAME}
+      POSTGRES_USER: ${CUSTOMER_DB_USER}
+      POSTGRES_PASSWORD: ${CUSTOMER_DB_PASSWORD}
     restart: always
     ports:
       - "5434:5432"
@@ -51,8 +51,8 @@ services:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: admin@gmail.com
-      RABBITMQ_DEFAULT_PASS: _rabbitmq_3gVE_0c!BbUby+
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
       RABBITMQ_LOG_LEVEL: error
     networks:
       - microservices-dotnet
@@ -67,8 +67,9 @@ services:
     environment:
       <<: *run-migrations
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__AccountConnectionString: "Host=account_database;Port=5432;Database=_accountdatabase_gpQcTBtS3NE1S;User Id=admin;Password=_accountdatabasep_wPRhN1iCfGsb;"
+      ConnectionStrings__AccountConnectionString: "Host=account_database;Port=5432;Database=${ACCOUNT_DB_NAME};User Id=${ACCOUNT_DB_USER};Password=${ACCOUNT_DB_PASSWORD};"
       ElasticConfiguration: "Uri=http://elasticsearch:9200"
+      EventBusSettings__HostAddress: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672"
     depends_on:
       - account_database
       - rabbitmq
@@ -88,7 +89,7 @@ services:
     environment:
       <<: *run-migrations
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=${CUSTOMER_DB_NAME};User Id=${CUSTOMER_DB_USER};Password=${CUSTOMER_DB_PASSWORD};"
     depends_on:
       - customer_database
     ports:
@@ -105,7 +106,7 @@ services:
     environment:
       <<: *run-migrations
       ASPNETCORE_ENVIRONMENT: Development
-      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=_customerdatabase_PORfERJCaF1p;User Id=admin;Password=_customerdatabasep_4vvFpVXgTJd;"
+      ConnectionStrings__CustomerConnectionString: "Host=customer_database;Port=5432;Database=${CUSTOMER_DB_NAME};User Id=${CUSTOMER_DB_USER};Password=${CUSTOMER_DB_PASSWORD};"
     depends_on:
       - customer_database
     ports:
@@ -123,6 +124,7 @@ services:
     environment:
       <<: *run-migrations
       ASPNETCORE_ENVIRONMENT: Development
+      EventBusSettings__HostAddress: "amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672"
     depends_on:
       - transaction_database
       - rabbitmq
@@ -152,8 +154,8 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
-      PGADMIN_DEFAULT_PASSWORD: _pgadmin_v-r6yVMv5G30V#2
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
     restart: always
     ports:
       - "5050:80"
@@ -166,8 +168,8 @@ services:
     image: mongo-express
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://transaction_database:27017
-      ME_CONFIG_BASICAUTH_USERNAME: admin
-      ME_CONFIG_BASICAUTH_PASSWORD: _transactiondatabase_9G2sTQ*HM5
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USER}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
     restart: always
     ports:
       - "8081:8081"

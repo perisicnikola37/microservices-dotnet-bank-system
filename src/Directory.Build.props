@@ -1,0 +1,11 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Nikola Perišić</Authors>
+    <Product>Microservices .NET Bank System</Product>
+    <RepositoryUrl>https://github.com/perisicnikola37/microservices-dotnet-bank-system</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Deterministic>true</Deterministic>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+</Project>

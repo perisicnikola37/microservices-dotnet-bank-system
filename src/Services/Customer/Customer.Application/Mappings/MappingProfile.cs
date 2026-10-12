@@ -3,9 +3,9 @@ using Customer.Application.Features.Commands.CreateCustomer;
 using Customer.Application.Features.Queries;
 
 namespace Customer.Application.Mappings
-    {
+{
     public class MappingProfile : Profile
-        {
+    {
         public MappingProfile()
         {
             CreateMap<CreateCustomerCommand, Domain.Entities.Customer>()
@@ -18,5 +18,5 @@ namespace Customer.Application.Mappings
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Created, opt => opt.MapFrom(src => src.CreatedDate));
         }
-        }
     }
+}

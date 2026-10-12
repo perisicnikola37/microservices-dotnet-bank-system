@@ -19,7 +19,7 @@ public class AccountsController(
     IMediator mediator,
     IPublishEndpoint publishEndpoint,
     CustomerGrpcService customerGrpcService) : ControllerBase
-    {
+{
     [HttpPost]
     [ProducesResponseType(typeof(Guid), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -109,4 +109,4 @@ public class AccountsController(
 
         return NoContent();
     }
-    }
+}

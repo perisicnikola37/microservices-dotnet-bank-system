@@ -5,7 +5,7 @@ using Account.Application.Exceptions;
 namespace Account.API.Middlewares;
 
 public class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlingMiddleware> logger)
-    {
+{
     public async Task InvokeAsync(HttpContext context)
     {
         try
@@ -47,4 +47,4 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next, ILogger<Glo
         var result = JsonSerializer.Serialize(response);
         await context.Response.WriteAsync(result);
     }
-    }
+}

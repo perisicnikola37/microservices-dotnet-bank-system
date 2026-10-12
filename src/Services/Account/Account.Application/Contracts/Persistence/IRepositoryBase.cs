@@ -4,7 +4,7 @@ using Account.Domain.Common;
 namespace Account.Application.Contracts.Persistence;
 
 public interface IRepositoryBase<T> where T : EntityBase
-    {
+{
     Task<IReadOnlyList<T>> GetAllAsync();
     Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
     Task<T?> GetByIdAsync(Guid id);
@@ -12,4 +12,4 @@ public interface IRepositoryBase<T> where T : EntityBase
     Task UpdateAsync(T entity);
     Task DeleteAsync(T entity);
     Task<IReadOnlyList<T>> GetAllAsync(Expression<Func<T, bool>> predicate);
-    }
+}

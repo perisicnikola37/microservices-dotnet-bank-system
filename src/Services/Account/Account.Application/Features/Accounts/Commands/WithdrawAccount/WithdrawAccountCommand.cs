@@ -1,9 +1,9 @@
 using MediatR;
 
 namespace Account.Application.Features.Accounts.Commands.WithdrawAccount
-    {
+{
     public class WithdrawAccountCommand : IRequest
-        {
+    {
         public Guid AccountId { get; private set; }
         public Guid CustomerId { get; set; }
         public decimal Amount { get; set; }
@@ -11,5 +11,5 @@ namespace Account.Application.Features.Accounts.Commands.WithdrawAccount
         {
             AccountId = accountId;
         }
-        }
     }
+}

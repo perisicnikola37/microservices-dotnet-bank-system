@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Account.Test;
 
 public class AccountIntegrationTests : BaseTest
-    {
+{
     private readonly AccountDatabaseContext _context;
     private readonly AccountsController _controller;
 
@@ -46,4 +46,4 @@ public class AccountIntegrationTests : BaseTest
     //     Assert.NotNull(account);
     //     Assert.Equal(customerId, account.CustomerId);
     // }
-    }
+}

@@ -51,12 +51,11 @@ builder.Services.AddSwaggerGen(s =>
     s.SwaggerDoc($"v{transactionApiVersion}", new OpenApiInfo
     {
         Title = "Transaction service",
-        Version = $"v{transactionApiVersion}", 
+        Version = $"v{transactionApiVersion}",
         Description = "Service for managing transactions.",
         Contact = new OpenApiContact
         {
             Name = "Nikola Perišić",
-            Email = "nikola.perisic@vegait.rs",
             Url = new Uri("https://github.com/perisicnikola37")
         },
         License = new OpenApiLicense

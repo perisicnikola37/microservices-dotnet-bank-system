@@ -2,7 +2,7 @@ namespace Account.Test
 {
     public class ArchitectureTests : BaseTest
     {
-    [Fact]
+        [Fact]
         public void ShouldHaveRequiredDependencies()
         {
             var assemblies = LoadAssemblies();
@@ -42,5 +42,5 @@ namespace Account.Test
                 infrastructureAssembly.GetReferencedAssemblies().Select(a => Assembly.Load(a.Name!))
             );
         }
-        }
+    }
 }

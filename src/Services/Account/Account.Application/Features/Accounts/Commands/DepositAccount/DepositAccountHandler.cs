@@ -9,7 +9,7 @@ public class DepositAccountHandler(
     IAccountRepository accountRepository,
     ILogger<DepositAccountHandler> logger)
     : IRequestHandler<DepositAccountCommand>
-    {
+{
     private readonly IAccountRepository _accountRepository =
         accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
 
@@ -39,4 +39,4 @@ public class DepositAccountHandler(
         _logger.LogInformation(
             $"Deposit successful for AccountId: {request.AccountId}, New Balance: {account.Balance}");
     }
-    }
+}

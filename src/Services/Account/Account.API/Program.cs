@@ -38,7 +38,6 @@ builder.Services.AddSwaggerGen(s =>
         Contact = new OpenApiContact
         {
             Name = "Nikola Perišić",
-            Email = "nikola.perisic@vegait.rs",
             Url = new Uri("https://github.com/perisicnikola37")
         },
         License = new OpenApiLicense

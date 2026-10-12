@@ -4,11 +4,11 @@ using Transaction.API.Data.DTOs.Responses;
 using Transaction.API.Services.Interfaces;
 
 namespace Transaction.API.Controllers
-    {
+{
     [Route("api/transactions")]
     [ApiController]
     public class TransactionsController(ITransactionService transactionService) : ControllerBase
-        {
+    {
         [HttpGet]
         [ProducesResponseType(typeof(List<TransactionDto>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -32,5 +32,5 @@ namespace Transaction.API.Controllers
         {
             return Ok(await transactionService.GetByAccountId(accountId));
         }
-        }
     }
+}

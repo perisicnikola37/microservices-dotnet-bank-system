@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Account.Infrastructure.Persistence;
 
 public class AccountDatabaseContext(DbContextOptions<AccountDatabaseContext> options) : DbContext(options)
-    {
+{
     public DbSet<Domain.Entities.Account> Accounts { get; set; }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new())
@@ -23,4 +23,4 @@ public class AccountDatabaseContext(DbContextOptions<AccountDatabaseContext> opt
         }
         return base.SaveChangesAsync(cancellationToken);
     }
-    }
+}

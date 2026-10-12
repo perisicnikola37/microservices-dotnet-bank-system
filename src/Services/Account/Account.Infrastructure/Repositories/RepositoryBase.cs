@@ -8,7 +8,7 @@ namespace Account.Infrastructure.Repositories;
 
 public class RepositoryBase<T>(AccountDatabaseContext dbContext) : IRepositoryBase<T>
     where T : EntityBase
-    {
+{
     private readonly AccountDatabaseContext
         _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
 
@@ -51,4 +51,4 @@ public class RepositoryBase<T>(AccountDatabaseContext dbContext) : IRepositoryBa
     {
         return await _dbContext.Set<T>().Where(predicate).ToListAsync();
     }
-    }
+}

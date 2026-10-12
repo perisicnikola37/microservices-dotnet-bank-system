@@ -14,7 +14,7 @@ public class
         ILogger<GetAuthenticatedCustomerAccountsQueryHandler> logger)
     : IRequestHandler<GetAuthenticatedCustomerAccountsQueryRequest,
         List<AccountDto>>
-    {
+{
     private readonly IAccountRepository _accountRepository =
         accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
 
@@ -41,4 +41,4 @@ public class
 
         return accountDtos;
     }
-    }
+}

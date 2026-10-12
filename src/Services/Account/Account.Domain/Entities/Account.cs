@@ -3,7 +3,7 @@ using Account.Domain.Common;
 namespace Account.Domain.Entities;
 
 public class Account : EntityBase
-    {
+{
     public Account()
     {
 
@@ -17,4 +17,4 @@ public class Account : EntityBase
 
     public Guid CustomerId { get; set; }
     public decimal Balance { get; set; }
-    }
+}

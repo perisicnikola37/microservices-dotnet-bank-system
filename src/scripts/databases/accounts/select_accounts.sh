@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Credentials
-DB_HOST="localhost" 
-DB_PORT="5433" 
-DB_NAME="_accountdatabase_gpQcTBtS3NE1S"
-DB_USER="admin"
-DB_PASSWORD="_accountdatabasep_wPRhN1iCfGsb"
+# Credentials are read from src/.env (see src/.env.example)
+set -a; source "$(dirname "$0")/../../../.env"; set +a
+
+DB_HOST="localhost"
+DB_PORT="5433"
+DB_NAME="${ACCOUNT_DB_NAME}"
+DB_USER="${ACCOUNT_DB_USER}"
+DB_PASSWORD="${ACCOUNT_DB_PASSWORD}"
 
 # Execute the query with ordering by `CreatedDate` column
 PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c "SELECT * FROM \"Accounts\" ORDER BY \"CreatedDate\" ASC;" | awk '{

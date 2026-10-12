@@ -7,7 +7,7 @@ using Moq;
 namespace Account.Test;
 
 public class AccountsControllerTests
-    {
+{
     private readonly AccountsController _controller;
     private readonly Mock<CustomerGrpcService> _grpcServiceMock;
     private readonly Mock<IMediator> _mediatorMock;
@@ -111,4 +111,4 @@ public class AccountsControllerTests
     //     _publishEndpointMock.Verify(m => m.Publish(It.IsAny<AccountTransactionEvent>(), It.IsAny<CancellationToken>()),
     //         Times.Once);
     // }
-    }
+}

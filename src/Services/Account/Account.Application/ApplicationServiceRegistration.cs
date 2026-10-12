@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Account.Application;
 
 public static class ApplicationServiceRegistration
-    {
+{
     public static void AddApplicationServices(this IServiceCollection services)
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -19,4 +19,4 @@ public static class ApplicationServiceRegistration
 
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
     }
-    }
+}

@@ -7,7 +7,7 @@ namespace Account.Application.Features.Accounts.Commands.WithdrawAccount;
 
 public class WithdrawingHandler(IAccountRepository accountRepository, ILogger<WithdrawingHandler> logger)
     : IRequestHandler<WithdrawAccountCommand>
-    {
+{
     private readonly IAccountRepository _accountRepository =
         accountRepository ?? throw new ArgumentNullException(nameof(accountRepository));
 
@@ -42,4 +42,4 @@ public class WithdrawingHandler(IAccountRepository accountRepository, ILogger<Wi
         logger.LogInformation(
             $"Withdrawal successful for AccountId: {request.AccountId}. New Balance: {account.Balance}");
     }
-    }
+}

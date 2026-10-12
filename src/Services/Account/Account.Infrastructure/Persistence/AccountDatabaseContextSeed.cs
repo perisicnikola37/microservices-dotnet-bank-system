@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace Account.Infrastructure.Persistence;
 
 public abstract class AccountDatabaseContextSeed
-    {
+{
     public static async Task SeedDataAsync(AccountDatabaseContext accountContext, ILogger<AccountDatabaseContextSeed> logger)
     {
         if (!accountContext.Accounts.Any())
@@ -20,7 +20,7 @@ public abstract class AccountDatabaseContextSeed
         var jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "Accounts.json");
         var jsonData = File.ReadAllText(jsonFilePath);
         var accounts = JsonConvert.DeserializeObject<List<Domain.Entities.Account>>(jsonData);
-            
+
         return accounts;
     }
-    }
+}
