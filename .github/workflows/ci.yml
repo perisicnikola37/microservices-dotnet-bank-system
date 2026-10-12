@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [develop]
+  pull_request:
+    branches: [develop]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore
+        run: dotnet restore ./src/MicroservicesArchitecture.sln
+
+      - name: Verify formatting
+        run: dotnet format whitespace ./src/MicroservicesArchitecture.sln --verify-no-changes --exclude '**/Migrations/**'
+
+      - name: Build
+        run: dotnet build ./src/MicroservicesArchitecture.sln --no-restore
+
+      - name: Test
+        run: dotnet test ./src/Services/Account/Account.Test/Account.Test.csproj --no-build --verbosity normal
