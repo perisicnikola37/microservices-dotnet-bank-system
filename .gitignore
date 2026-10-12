@@ -89,3 +89,6 @@ StyleCopCache.cache
 
 # Web config
 appsettings.Development.json
+
+# Local environment
+.env
